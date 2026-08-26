@@ -1,16 +1,12 @@
-"use client";
-
-import dynamic from "next/dynamic";
-
-const TerraMap = dynamic(() => import("@/components/terra-map").then((m) => m.TerraMap), {
-  ssr: false,
-  loading: () => (
-    <section id="terra" className="relative flex h-screen min-h-[720px] items-center justify-center border-t border-white/[0.08]">
-      <p className="text-sm tracking-widest text-white/40">Loading Terra map…</p>
-    </section>
-  ),
-});
-
 export function TerraMapSection() {
-  return <TerraMap />;
+  return (
+    <section id="terra" className="relative h-screen min-h-[720px] overflow-hidden border-t border-white/[0.08]">
+      <iframe
+        src="/terra-map.html"
+        title="TERRA — Live Earth Map"
+        className="absolute inset-0 h-full w-full border-0"
+        allow="geolocation"
+      />
+    </section>
+  );
 }
