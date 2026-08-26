@@ -1,0 +1,131 @@
+@import "leaflet/dist/leaflet.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0c0a0a;
+  --foreground: #ffffff;
+  --accent: #e66d1e;
+  --gold: #fdbb2d;
+  --teal: #1a5c55;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: #0c0a0a;
+  font-family: var(--font-display), "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.font-pixel {
+  font-family: var(--font-pixel), ui-monospace, monospace;
+}
+
+.frosted-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(10, 8, 8, 0.35), rgba(10, 8, 8, 0.18)),
+    url("/images/frosted-bg.jpg") center / cover no-repeat fixed;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-left {
+  animation: marqueeLeft 28s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marqueeRight 32s linear infinite;
+}
+
+.leaflet-container {
+  background: #ece7dc;
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.leaflet-control-attribution {
+  background: rgba(16, 14, 14, 0.55) !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(12px);
+}
+
+.leaflet-control-attribution a {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(16, 14, 14, 0.72) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.terra-pier {
+  background: transparent;
+  border: none;
+}
+
+.terra-pier-dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #111;
+  border: 2px solid #e66d1e;
+  box-shadow: 0 0 0 2px rgba(253, 187, 45, 0.35);
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(16, 14, 14, 0.88);
+  color: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.leaflet-popup-tip {
+  background: rgba(16, 14, 14, 0.88);
+}
+
+.leaflet-popup-content {
+  margin: 10px 12px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
