@@ -1,4 +1,6 @@
-# Agentic + Terra
+# KileleMarketLink
+
+GitHub: [ProximaOpal/KileleMarketLink](https://github.com/ProximaOpal/KileleMarketLink)
 
 Landing page that keeps the **AGENTIC** layout — hero, cards, photo sections, buttons, type, and icons — and paints it with the **Frosted Authentication** color system: mesh gradient background, dark glass surfaces, white type, and orange/gold accents.
 
