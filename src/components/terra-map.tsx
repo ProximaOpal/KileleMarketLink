@@ -41,9 +41,8 @@ export function TerraMap() {
       maxZoom: 16,
     }).setView([51.497, -0.09], 12);
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-      attribution: "&copy; OpenStreetMap &copy; CARTO",
-      subdomains: "abcd",
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
 
     L.control.zoom({ position: "topright" }).addTo(map);
