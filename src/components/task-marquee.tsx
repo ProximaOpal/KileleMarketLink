@@ -27,7 +27,7 @@ const ROW_B = [
 function MarqueeRow({ items, reverse }: { items: string[]; reverse?: boolean }) {
   const doubled = [...items, ...items];
   return (
-    <div className={`flex border-b border-white/[0.08] ${reverse ? "animate-marquee-right" : "animate-marquee-left"}`}>
+    <div className={`flex w-max border-b border-white/[0.08] ${reverse ? "animate-marquee-right" : "animate-marquee-left"}`}>
       {doubled.map((item, i) => (
         <div key={`${item}-${i}`} className="flex shrink-0 items-center gap-6 border-r border-white/[0.08] px-10 py-5">
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-white/25" />

@@ -30,7 +30,7 @@ const STEPS = [
 
 export function Workflow() {
   return (
-    <section id="workflow" className="border-t border-white/[0.08] px-6 py-32 md:px-12 lg:px-20">
+    <section id="workflow" className="relative z-10 border-t border-white/[0.08] px-6 py-32 md:px-12 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16">
           <SectionHeading
