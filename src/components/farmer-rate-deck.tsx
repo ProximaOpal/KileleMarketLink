@@ -86,7 +86,7 @@ const FARMERS: Farmer[] = [
   },
 ];
 
-export function FarmerRateDeck() {
+export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
   const scroller = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [ratings, setRatings] = useState(() => FARMERS.map((f) => f.rating));
@@ -110,7 +110,10 @@ export function FarmerRateDeck() {
   }
 
   return (
-    <div className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[#0c0a0a]">
+    <div
+      id={embedded ? "farmers" : undefined}
+      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[#0c0a0a] text-black"
+    >
       <div
         ref={scroller}
         className="farmer-scroller flex h-full w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden"
@@ -121,15 +124,19 @@ export function FarmerRateDeck() {
             className="relative h-full w-full shrink-0 snap-center snap-always"
             style={{ background: farmer.pageBg, color: farmer.ink }}
           >
-            <header className="relative z-20 flex items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-7">
-              <Link href="/" aria-label="Back" className="flex h-10 w-10 items-center justify-center">
-                <ChevronLeft className="h-6 w-6" strokeWidth={1.75} />
-              </Link>
-              <div className="flex items-center gap-5 text-[15px] font-medium">
-                <span>My profile</span>
-                <span className="opacity-40">Store</span>
-              </div>
-            </header>
+            {embedded ? (
+              <div className="h-[4.75rem]" aria-hidden />
+            ) : (
+              <header className="relative z-20 flex items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-7">
+                <Link href="/" aria-label="Back" className="flex h-10 w-10 items-center justify-center">
+                  <ChevronLeft className="h-6 w-6" strokeWidth={1.75} />
+                </Link>
+                <div className="flex items-center gap-5 text-[15px] font-medium">
+                  <span>My profile</span>
+                  <span className="opacity-40">Store</span>
+                </div>
+              </header>
+            )}
 
             <div className="relative mx-auto mt-1 h-[44%] max-h-[420px] w-full max-w-[440px]">
               <div

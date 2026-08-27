@@ -11,6 +11,7 @@ import { Pricing } from "@/components/pricing";
 import { Security } from "@/components/security";
 import { SiteNav } from "@/components/site-nav";
 import { TaskMarquee } from "@/components/task-marquee";
+import { FarmerRateDeck } from "@/components/farmer-rate-deck";
 import { TerraMapSection } from "@/components/terra-map-section";
 import { Workflow } from "@/components/workflow";
 
@@ -21,6 +22,7 @@ export default function Home() {
       <IntroSplash />
       <SiteNav />
       <Hero />
+      <FarmerRateDeck embedded />
       <Discover />
       <Platform />
       <Agents />

@@ -61,6 +61,12 @@ export function Hero() {
           <br />
           before it spoils.
         </h1>
+        <a
+          href="#farmers"
+          className="mb-8 w-fit text-sm tracking-wide text-white/70 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+        >
+          Farmer rate cards — swipe growers
+        </a>
         <div className="flex gap-8 sm:gap-12">
           {[
             { value: "12h", label: "Fresh window" },

@@ -19,7 +19,7 @@ Open [http://127.0.0.1:43173](http://127.0.0.1:43173).
 
 The Terra map also lives at `/terra-map.html`.
 
-Farmer rate cards are a dedicated page at `/farmers` — swipe horizontally between growers. Each card keeps the circle aura behind a cut-out farmer portrait, farmer details, review stars, co-op avatars, and last-haul stats.
+Farmer rate cards are a full-viewport section on the landing (`#farmers`), right after the hero. Swipe horizontally between growers. The same deck also lives at `/farmers`. Each card keeps the circle aura behind a cut-out farmer portrait, farmer details, review stars, co-op avatars, and last-haul stats.
 
 ## Deploy on Render
 
