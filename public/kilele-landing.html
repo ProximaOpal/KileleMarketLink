@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kilele Market Link</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4f6f2;
+      --ink: #0b0f0c;
+      --green-1: #22c25e;
+      --green-2: #3cff6e;
+      --teal-2: #0fe0c4;
+      --display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+      --mono: "Space Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .stage {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--paper);
+      overflow: hidden;
+      isolation: isolate;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+    }
+
+    .stage.landing-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splashes {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .splashes g {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .shape-a { transform: translate(14%, -12%) scale(1.22) rotate(4deg); }
+    .shape-b { transform: translate(14%, 14%) scale(1.24) rotate(-3deg); }
+    .shape-c { transform: translate(-16%, -14%) scale(1.28); }
+    .shape-d { transform: translate(-16%, 14%) scale(1.28); }
+
+    .stage.shapes-in .shape-a {
+      animation: splashIn 1.35s cubic-bezier(0.16, 0.85, 0.18, 1) forwards;
+    }
+    .stage.shapes-in .shape-b {
+      animation: splashIn 1.35s cubic-bezier(0.16, 0.85, 0.18, 1) 0.12s forwards;
+    }
+    .stage.shapes-in .shape-c {
+      animation: splashIn 1.15s cubic-bezier(0.16, 0.85, 0.18, 1) 0.28s forwards;
+    }
+    .stage.shapes-in .shape-d {
+      animation: splashIn 1.15s cubic-bezier(0.16, 0.85, 0.18, 1) 0.38s forwards;
+    }
+
+    @keyframes splashIn {
+      to {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.045;
+      mix-blend-mode: multiply;
+    }
+
+    .sound-toggle {
+      position: absolute;
+      top: clamp(18px, 4vw, 36px);
+      right: clamp(18px, 4vw, 36px);
+      z-index: 20;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(11, 15, 12, 0.18);
+      background: rgba(244, 246, 242, 0.55);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease, border-color 0.3s ease;
+    }
+
+    .stage.text-in .sound-toggle {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sound-toggle:hover { border-color: var(--green-1); }
+    .sound-toggle svg { width: 17px; height: 17px; stroke: var(--ink); fill: none; }
+
+    .center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 7;
+      text-align: center;
+      width: 100%;
+      padding: 0 24px;
+    }
+
+    .wordwrap, .subwrap { overflow: hidden; }
+
+    h1.word {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(64px, 15.5vw, 220px);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      transform: translateY(115%) scale(1.06);
+      filter: blur(14px);
+      -webkit-filter: blur(14px);
+      opacity: 0;
+      will-change: transform, filter, opacity;
+    }
+
+    .stage.word-in h1.word {
+      animation: wordIn 1.25s cubic-bezier(0.16, 0.9, 0.2, 1) forwards;
+    }
+
+    @keyframes wordIn {
+      to {
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        opacity: 1;
+      }
+    }
+
+    .subwrap { margin-top: clamp(4px, 1.2vw, 10px); }
+
+    .sub {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(24px, 5.5vw, 72px);
+      letter-spacing: 0.02em;
+      color: var(--paper);
+      -webkit-text-stroke: 1.5px var(--ink);
+      text-transform: uppercase;
+      transform: translateY(105%);
+    }
+
+    .stage.sub-in .sub {
+      animation: subIn 1.05s cubic-bezier(0.16, 0.9, 0.2, 1) 0.2s forwards;
+    }
+
+    @keyframes subIn {
+      to { transform: translateY(0); }
+    }
+
+    .underline {
+      width: 0;
+      height: 3px;
+      background: var(--ink);
+      margin: clamp(14px, 2.4vw, 26px) auto 0;
+    }
+
+    .stage.line-in .underline {
+      animation: lineIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s forwards;
+    }
+
+    @keyframes lineIn {
+      to { width: clamp(80px, 14vw, 220px); }
+    }
+
+    .gate {
+      position: absolute;
+      inset: 0;
+      z-index: 50;
+      background: var(--paper);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+
+    .gate.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .gate-title {
+      font-family: var(--display);
+      font-weight: 700;
+      color: var(--ink);
+      font-size: clamp(30px, 5.6vw, 50px);
+      letter-spacing: -0.01em;
+      text-align: center;
+      animation: fadeUp 1s ease both 0.2s;
+    }
+
+    .enter-btn {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: transparent;
+      border: 1.5px solid var(--ink);
+      padding: 16px 42px;
+      border-radius: 999px;
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 1;
+      animation: fadeUp 1s ease both 0.5s;
+    }
+
+    .enter-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, var(--green-2), var(--teal-2));
+      transform: translateX(-100%);
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: -1;
+    }
+
+    .enter-btn:hover { border-color: transparent; }
+    .enter-btn:hover::before { transform: translateX(0); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" id="stage" role="dialog" aria-label="Kilele Market Link intro">
+    <svg class="splashes" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="gGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3CFF6E" />
+          <stop offset="100%" stop-color="#0FA24E" />
+        </linearGradient>
+        <linearGradient id="gTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3CFF6E" />
+          <stop offset="100%" stop-color="#0FE0C4" />
+        </linearGradient>
+        <linearGradient id="gGreen2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#5CFF8F" />
+          <stop offset="100%" stop-color="#14C77A" />
+        </linearGradient>
+      </defs>
+      <g class="shape-a">
+        <path fill="url(#gGreen)" d="M1000,0 L1000,720 L860,790 L760,700 L640,760 L560,640 L430,690 L470,540 L360,470 L510,350 L420,220 L560,150 L520,40 L640,0 Z" />
+      </g>
+      <g class="shape-b">
+        <path fill="url(#gTeal)" d="M1000,560 L1000,1000 L260,1000 L340,880 L460,910 L520,800 L650,830 L700,700 L820,730 L860,610 Z" />
+      </g>
+      <g class="shape-c">
+        <path fill="url(#gGreen2)" d="M0,0 L230,0 L200,90 L260,150 L150,230 L120,140 L0,150 Z" />
+      </g>
+      <g class="shape-d">
+        <path fill="url(#gGreen2)" d="M0,760 L110,700 L160,800 L250,830 L200,940 L260,1000 L0,1000 Z" />
+      </g>
+    </svg>
+
+    <svg class="grain" aria-hidden="true">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)" />
+    </svg>
+
+    <button type="button" class="sound-toggle" id="soundBtn" title="Toggle sound" aria-pressed="true">
+      <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 5 6 9H3v6h3l5 4V5z" />
+        <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+        <path d="M18 6a9 9 0 0 1 0 12" />
+      </svg>
+    </button>
+
+    <div class="center">
+      <div class="wordwrap"><h1 class="word">KILELE</h1></div>
+      <div class="subwrap"><div class="sub">Market Link</div></div>
+      <div class="underline"></div>
+    </div>
+
+    <div class="gate" id="gate">
+      <h2 class="gate-title">Kilele Market Link</h2>
+      <button type="button" class="enter-btn" id="enterBtn" autofocus>Enter</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const stage = document.getElementById("stage");
+      const gate = document.getElementById("gate");
+      const enterBtn = document.getElementById("enterBtn");
+      const soundBtn = document.getElementById("soundBtn");
+      let entered = false;
+      let soundOn = true;
+      let audio = null;
+
+      function ensureCtx() {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return null;
+        if (!audio) {
+          const ctx = new Ctx();
+          const master = ctx.createGain();
+          master.gain.value = soundOn ? 1 : 0;
+          master.connect(ctx.destination);
+          audio = { ctx, master, ambient: null };
+        }
+        if (audio.ctx.state === "suspended") audio.ctx.resume();
+        return audio;
+      }
+
+      function noiseBuffer(kit, duration) {
+        const sr = kit.ctx.sampleRate;
+        const len = Math.max(1, Math.floor(sr * duration));
+        const buf = kit.ctx.createBuffer(1, len, sr);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 1.3);
+        return buf;
+      }
+
+      function playWhoosh(delay, vol) {
+        const kit = audio;
+        if (!kit) return;
+        const t = kit.ctx.currentTime + delay;
+        const src = kit.ctx.createBufferSource();
+        src.buffer = noiseBuffer(kit, 1.2);
+        const bp = kit.ctx.createBiquadFilter();
+        bp.type = "bandpass";
+        bp.Q.value = 0.9;
+        bp.frequency.setValueAtTime(260, t);
+        bp.frequency.exponentialRampToValueAtTime(2200, t + 0.85);
+        bp.frequency.exponentialRampToValueAtTime(500, t + 1.2);
+        const g = kit.ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol, t + 0.4);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
+        src.connect(bp); bp.connect(g); g.connect(kit.master);
+        src.start(t); src.stop(t + 1.25);
+      }
+
+      function playClick() {
+        const kit = audio;
+        if (!kit) return;
+        const t = kit.ctx.currentTime;
+        const o = kit.ctx.createOscillator();
+        o.type = "sine";
+        o.frequency.value = 700;
+        const g = kit.ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.18, t + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+        o.connect(g); g.connect(kit.master);
+        o.start(t); o.stop(t + 0.11);
+      }
+
+      function playSwell() {
+        const kit = audio;
+        if (!kit) return;
+        const t = kit.ctx.currentTime;
+        [0, -1200].forEach((detune, i) => {
+          const o = kit.ctx.createOscillator();
+          o.type = i === 0 ? "sine" : "triangle";
+          o.detune.value = detune;
+          o.frequency.setValueAtTime(80, t);
+          o.frequency.exponentialRampToValueAtTime(150, t + 1.3);
+          const lp = kit.ctx.createBiquadFilter();
+          lp.type = "lowpass";
+          lp.frequency.setValueAtTime(300, t);
+          lp.frequency.exponentialRampToValueAtTime(1600, t + 1.1);
+          const g = kit.ctx.createGain();
+          g.gain.setValueAtTime(0.0001, t);
+          g.gain.exponentialRampToValueAtTime(i === 0 ? 0.13 : 0.06, t + 0.7);
+          g.gain.exponentialRampToValueAtTime(0.0001, t + 1.9);
+          o.connect(lp); lp.connect(g); g.connect(kit.master);
+          o.start(t); o.stop(t + 2.0);
+        });
+      }
+
+      function playChime() {
+        const kit = audio;
+        if (!kit) return;
+        const t = kit.ctx.currentTime;
+        [523.25, 659.25, 783.99].forEach((f, i) => {
+          const o = kit.ctx.createOscillator();
+          o.type = "sine";
+          o.frequency.value = f;
+          const g = kit.ctx.createGain();
+          const start = t + i * 0.05;
+          g.gain.setValueAtTime(0.0001, start);
+          g.gain.exponentialRampToValueAtTime(0.11, start + 0.04);
+          g.gain.exponentialRampToValueAtTime(0.0001, start + 1.4);
+          o.connect(g); g.connect(kit.master);
+          o.start(start); o.stop(start + 1.5);
+        });
+      }
+
+      function startAmbient() {
+        const kit = audio;
+        if (!kit || kit.ambient) return;
+        const o1 = kit.ctx.createOscillator(); o1.type = "sine"; o1.frequency.value = 60;
+        const o2 = kit.ctx.createOscillator(); o2.type = "sine"; o2.frequency.value = 90;
+        const lfo = kit.ctx.createOscillator(); lfo.type = "sine"; lfo.frequency.value = 0.09;
+        const lfoGain = kit.ctx.createGain(); lfoGain.gain.value = 0.015;
+        const g = kit.ctx.createGain(); g.gain.value = 0.0001;
+        lfo.connect(lfoGain); lfoGain.connect(g.gain);
+        o1.connect(g); o2.connect(g); g.connect(kit.master);
+        const t = kit.ctx.currentTime;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.linearRampToValueAtTime(0.025, t + 2.5);
+        o1.start(); o2.start(); lfo.start();
+        kit.ambient = true;
+      }
+
+      function done() {
+        stage.classList.add("landing-out");
+        setTimeout(function () {
+          try { window.parent.postMessage({ type: "kilele-landing-done" }, "*"); } catch (e) {}
+        }, 800);
+      }
+
+      function enter() {
+        if (entered) return;
+        entered = true;
+        try { ensureCtx(); playClick(); } catch (e) {}
+        gate.classList.add("hide");
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            stage.classList.add("shapes-in");
+            try { playWhoosh(0, 0.3); playWhoosh(0.15, 0.2); playWhoosh(0.3, 0.16); } catch (e) {}
+          });
+        });
+        setTimeout(function () { try { playSwell(); } catch (e) {} }, 600);
+        setTimeout(function () {
+          stage.classList.add("word-in");
+          try { playChime(); } catch (e) {}
+        }, 1250);
+        setTimeout(function () { stage.classList.add("sub-in"); }, 1750);
+        setTimeout(function () {
+          stage.classList.add("line-in");
+          stage.classList.add("text-in");
+          try { startAmbient(); } catch (e) {}
+        }, 2100);
+        setTimeout(done, 3800);
+      }
+
+      enterBtn.addEventListener("click", enter);
+      window.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          enter();
+        }
+      });
+
+      soundBtn.addEventListener("click", function () {
+        soundOn = !soundOn;
+        soundBtn.setAttribute("aria-pressed", soundOn ? "true" : "false");
+        soundBtn.style.borderColor = soundOn ? "rgba(11,15,12,0.18)" : "rgba(34,194,94,0.7)";
+        soundBtn.style.opacity = soundOn ? "1" : "0.7";
+        if (audio) audio.master.gain.setTargetAtTime(soundOn ? 1 : 0, audio.ctx.currentTime, 0.05);
+      });
+    })();
+  </script>
+</body>
+</html>
