@@ -19,6 +19,8 @@ Open [http://127.0.0.1:43173](http://127.0.0.1:43173).
 
 The Terra map also lives at `/terra-map.html`.
 
+Farmer rate cards are a dedicated page at `/farmers` — swipe horizontally between growers. Each card keeps the circle aura behind a cut-out farmer portrait, farmer details, review stars, co-op avatars, and last-haul stats.
+
 ## Deploy on Render
 
 This repo is set up as a **Render Web Service** (Node, `next start`). Blueprint file: `render.yaml`.

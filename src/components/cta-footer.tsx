@@ -63,6 +63,7 @@ export function CtaFooter() {
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
             {[
               ["#platform", "Platform"],
+              ["/farmers", "Farmers"],
               ["#agents", "Agents"],
               ["#workflow", "Workflow"],
               ["#terra", "Terra"],
