@@ -19,7 +19,7 @@ Open [http://127.0.0.1:43173](http://127.0.0.1:43173).
 
 The Terra map also lives at `/terra-map.html`.
 
-Farmer rate cards are a full-viewport section on the landing (`#farmers`), right after the hero. Swipe horizontally between growers. The same deck also lives at `/farmers`.
+Farmer rate cards are a full-viewport section on the landing (`#farmers`), right after the hero. Swipe, drag, or scroll horizontally across **10 growers**. The same deck also lives at `/farmers`.
 
 ## Deploy on Render
 
