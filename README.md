@@ -46,6 +46,6 @@ No env secrets are required. After the first deploy, commits to `main` auto-depl
 
 | From | Used for |
 | --- | --- |
-| White + luminous green editorial | Jagged lime-to-cyan splashes, off-white canvas, black type, pill CTAs |
+| White + luminous green editorial | Soft lime-to-cyan gradients, off-white canvas, black type, pill CTAs |
 | AGENTIC landing | Geometry, nav, hero, sticky agent cards, photo stacks, workflow, pricing, icons |
 | Terra map HTML | Full-viewport Live Earth Map as you scroll |
