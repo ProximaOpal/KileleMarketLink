@@ -1,27 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PaperCutLayer } from "@/components/paper-cut-layer";
 
 export function Hero() {
   return (
     <section id="top" className="relative isolate h-screen overflow-hidden bg-[#f3f3f1]">
-      <img
-        src="/images/leaves-hero.jpg"
-        alt="Lush green leaves"
-        className="absolute inset-0 z-0 h-full w-full object-cover"
-      />
-      <img
-        src="/images/luminous-splash.png"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute -right-[8%] top-[-6%] z-[1] h-[72%] w-[64%] object-cover object-right"
+      <div
+        className="absolute inset-0 z-0"
         style={{
-          maskImage: "radial-gradient(ellipse at 70% 40%, black 42%, transparent 78%)",
-          WebkitMaskImage: "radial-gradient(ellipse at 70% 40%, black 42%, transparent 78%)",
+          background:
+            "radial-gradient(90% 70% at 92% 8%, #e8ff78 0%, transparent 52%), radial-gradient(80% 65% at 100% 100%, #2ee6c8 0%, transparent 55%), linear-gradient(152deg, #f3f3f1 0%, #f4f6e8 26%, #d4f85a 58%, #8aecc8 78%, #2ee6c8 100%)",
         }}
       />
-      <PaperCutLayer className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[58%] w-full drop-shadow-[0_-14px_28px_rgba(10,10,10,0.12)]" />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(243,243,241,0.94) 0%, rgba(243,243,241,0.55) 38%, rgba(243,243,241,0.08) 62%, transparent 78%)",
+        }}
+      />
       <div className="h-20" />
       <motion.div
         initial={{ opacity: 0, y: 18 }}
