@@ -2,7 +2,7 @@
 
 GitHub: [ProximaOpal/KileleMarketLink](https://github.com/ProximaOpal/KileleMarketLink)
 
-The site opens on a **KILELE Market Link** intro: teaser type, Enter, then the wordmark, with a full-screen camera-move video behind the paper/green wash. After Enter, it fades into the main app (harvest batches, cold-chain telematics, Nairobi corridor timing, Tatu City, Konza City, factories, and dark stores).
+The site opens on a **KILELE Market Link** gate. Press **Enter** for torn-paper green splashes, the wordmark, and a full-screen camera-move video, then it fades into the main app.
 
 Replace `public/videos/landing.mp4` with your PixVerse export (`PixVerse_V6_Image_Text_540P_CAMERA_MOVEMENTS__.mp4`) to use that exact clip on the landing.
 

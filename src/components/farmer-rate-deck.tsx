@@ -237,7 +237,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
     const el = viewport.current;
     if (!el) return;
     const apply = () => {
-      const w = el.clientWidth;
+      const w = Math.round(el.getBoundingClientRect().width);
       setWidth(w);
       x.set(-indexRef.current * w);
     };
@@ -298,12 +298,12 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
     <div
       id={embedded ? "farmers" : undefined}
       ref={viewport}
-      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden text-black"
+      className="relative h-[100dvh] min-h-[640px] w-full overflow-hidden text-black"
       style={{ background: FARMERS[index]?.pageBg ?? "#c8f542" }}
     >
       <motion.div
         className="flex h-full"
-        style={{ x, width: width ? width * FARMERS.length : "100%" }}
+        style={{ x }}
         drag={width ? "x" : false}
         dragDirectionLock
         dragElastic={0.16}
@@ -323,13 +323,18 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
           return (
             <article
               key={farmer.id}
-              className="relative h-full shrink-0"
-              style={{ width: width || "100%", background: farmer.pageBg, color: farmer.ink }}
+              className="relative flex h-full shrink-0 flex-col overflow-hidden"
+              style={{
+                flex: width ? `0 0 ${width}px` : "0 0 100%",
+                width: width ? width : "100%",
+                background: farmer.pageBg,
+                color: farmer.ink,
+              }}
             >
               {embedded ? (
-                <div className="h-[4.75rem]" aria-hidden />
+                <div className="h-[4.75rem] shrink-0" aria-hidden />
               ) : (
-                <header className="relative z-20 flex items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-7">
+                <header className="relative z-20 flex shrink-0 items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-7">
                   <Link href="/" aria-label="Back" className="flex h-10 w-10 items-center justify-center">
                     <ChevronLeft className="h-6 w-6" strokeWidth={1.75} />
                   </Link>
@@ -340,9 +345,9 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                 </header>
               )}
 
-              <div className="relative mx-auto mt-1 h-[44%] max-h-[420px] w-full max-w-[440px]">
+              <div className="relative mx-auto min-h-0 w-full max-w-[440px] flex-1">
                 <motion.div
-                  className="absolute left-1/2 top-[6%] h-[82%] w-[76%] -translate-x-1/2 rounded-full"
+                  className="absolute left-1/2 top-[4%] h-[78%] w-[72%] -translate-x-1/2 rounded-full"
                   style={{ background: farmer.aura }}
                   animate={{ scale: active ? 1 : 0.82, opacity: active ? 1 : 0.4 }}
                   transition={SPRING}
@@ -352,28 +357,28 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                   src={farmer.portrait}
                   alt={farmer.name}
                   draggable={false}
-                  className="relative z-10 mx-auto h-full w-auto max-w-[94%] object-contain object-bottom drop-shadow-[0_18px_28px_rgba(0,0,0,0.22)]"
+                  className="relative z-10 mx-auto h-full w-auto max-w-[min(92%,380px)] object-contain object-bottom drop-shadow-[0_18px_28px_rgba(0,0,0,0.22)]"
                   animate={{ scale: active ? 1 : 0.88, y: active ? 0 : 28, opacity: active ? 1 : 0.35 }}
                   transition={SPRING}
                 />
               </div>
 
               <motion.div
-                className="relative z-10 mx-auto max-w-[440px] px-7 pb-[7.5rem] pt-1"
+                className="relative z-10 mx-auto w-full max-w-[440px] shrink-0 px-7 pb-[5.75rem] pt-1 sm:pb-[6.25rem]"
                 animate={{ y: active ? 0 : 18, opacity: active ? 1 : 0.25 }}
                 transition={SPRING}
               >
-                <p className="text-[15px] font-semibold" style={{ color: farmer.accent }}>
+                <p className="text-[13px] font-semibold sm:text-[15px]" style={{ color: farmer.accent }}>
                   Farmer details
                 </p>
-                <h1 className="mt-1 font-display text-[40px] font-semibold leading-[1.02] tracking-tight sm:text-5xl">
+                <h1 className="mt-0.5 font-display text-[clamp(1.7rem,4.2vw,2.75rem)] font-semibold leading-[1.05] tracking-tight">
                   {farmer.name}
                 </h1>
-                <p className="mt-1 text-[18px] font-light lowercase tracking-tight" style={{ color: farmer.muted }}>
+                <p className="mt-0.5 text-[16px] font-light lowercase tracking-tight sm:text-[18px]" style={{ color: farmer.muted }}>
                   {farmer.crop}
                 </p>
 
-                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1">
+                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 sm:mt-3">
                   <Stars
                     value={ratings[i]}
                     onChange={(n) =>
@@ -390,7 +395,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                   <span className="text-[13px] font-semibold">{farmer.rate}</span>
                 </div>
 
-                <div className="mt-6">
+                <div className="mt-4 sm:mt-5">
                   <div className="mb-2 flex items-center justify-between text-[15px] font-medium">
                     <span>Update</span>
                     <span className="text-[12px]" style={{ color: farmer.muted }}>
@@ -407,8 +412,8 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                   </div>
                 </div>
 
-                <div className="mt-7">
-                  <div className="mb-3 flex items-end justify-between">
+                <div className="mt-4 sm:mt-5">
+                  <div className="mb-2 flex items-end justify-between sm:mb-3">
                     <div>
                       <div className="text-[15px] font-medium">Team</div>
                       <div className="text-[15px] font-medium">{farmer.coop}</div>
@@ -432,7 +437,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                           alt={mate.name}
                           draggable={false}
                           className={cn(
-                            "h-12 w-12 rounded-[10px] object-cover transition-[box-shadow] duration-300",
+                            "h-11 w-11 rounded-[10px] bg-white/85 object-cover object-top ring-1 ring-black/10 transition-[box-shadow] duration-300 sm:h-12 sm:w-12",
                             t === index && "ring-2 ring-black/70",
                           )}
                         />
@@ -521,10 +526,10 @@ function Stars({ value, onChange }: { value: number; onChange: (n: number) => vo
         return (
           <button key={n} type="button" onClick={() => onChange(n)} className="p-0.5" aria-label={`Rate ${n} stars`}>
             <Star
-              className="h-[18px] w-[18px]"
+              className="h-[18px] w-[18px] drop-shadow-[0_1px_0_rgba(0,0,0,0.35)]"
               strokeWidth={1.6}
               fill={filled ? "#c8f542" : "transparent"}
-              color="#c8f542"
+              color="#111111"
             />
           </button>
         );

@@ -34,8 +34,9 @@ function reducedMotion() {
 }
 
 export function KileleLanding({ onComplete }: { onComplete: () => void }) {
-  const noiseId = useId().replace(/:/g, "");
+  const uid = useId().replace(/:/g, "");
   const [phase, setPhase] = useState("");
+  const [gateHidden, setGateHidden] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [entered, setEntered] = useState(false);
   const audioRef = useRef<AudioKit | null>(null);
@@ -161,23 +162,6 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
     o.stop(t + dur + 0.02);
   }, []);
 
-  const playSoftFade = useCallback(() => {
-    const kit = audioRef.current;
-    if (!kit) return;
-    const t = kit.ctx.currentTime;
-    const o = kit.ctx.createOscillator();
-    o.type = "sine";
-    o.frequency.value = 1200;
-    const g = kit.ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.03, t + 0.3);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
-    o.connect(g);
-    g.connect(kit.master);
-    o.start(t);
-    o.stop(t + 1.35);
-  }, []);
-
   const startAmbient = useCallback(() => {
     const kit = audioRef.current;
     if (!kit || kit.ambient) return;
@@ -213,22 +197,7 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
     document.body.style.overflow = "hidden";
     void videoRef.current?.play().catch(() => undefined);
 
-    const reduced = reducedMotion();
-    const t1 = window.setTimeout(() => setPhase("kml-wash-in"), 20);
-    const t2 = window.setTimeout(() => setPhase("kml-wash-in kml-teaser-in"), reduced ? 150 : 650);
-    const t3 = window.setTimeout(() => {
-      setPhase("kml-wash-in kml-teaser-out");
-      playSoftFade();
-    }, reduced ? 600 : 2500);
-    const t4 = window.setTimeout(() => {
-      setPhase("kml-wash-in kml-teaser-out kml-enter-in");
-    }, reduced ? 900 : 3900);
-
     return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
-      window.clearTimeout(t3);
-      window.clearTimeout(t4);
       document.body.style.overflow = prevOverflow;
       const kit = audioRef.current;
       if (kit) {
@@ -243,7 +212,7 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
         audioRef.current = null;
       }
     };
-  }, [playSoftFade]);
+  }, []);
 
   function finish() {
     if (doneRef.current) return;
@@ -260,19 +229,26 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
     setEntered(true);
     ensureCtx();
     playClick(700, 0.09);
-    setPhase("kml-wash-in kml-teaser-out kml-enter-in kml-final-in");
-    playWhoosh(0, 0.26);
+    setGateHidden(true);
+    void videoRef.current?.play().catch(() => undefined);
+
     const reduced = reducedMotion();
-    window.setTimeout(() => playSwell(), reduced ? 80 : 300);
-    window.setTimeout(() => playChime(), reduced ? 180 : 850);
+    setPhase("kml-shapes-in");
+    playWhoosh(0, 0.3);
+    playWhoosh(0.15, 0.2);
+    playWhoosh(0.3, 0.16);
+
+    window.setTimeout(() => playSwell(), reduced ? 100 : 600);
     window.setTimeout(() => {
-      setPhase("kml-wash-in kml-teaser-out kml-enter-in kml-final-in kml-final-sub-in");
-    }, reduced ? 220 : 1350);
+      setPhase("kml-shapes-in kml-word-in");
+      playChime();
+    }, reduced ? 200 : 1250);
+    window.setTimeout(() => setPhase("kml-shapes-in kml-word-in kml-sub-in"), reduced ? 300 : 1750);
     window.setTimeout(() => {
-      setPhase("kml-wash-in kml-teaser-out kml-enter-in kml-final-in kml-final-sub-in kml-final-line-in");
+      setPhase("kml-shapes-in kml-word-in kml-sub-in kml-line-in kml-text-in");
       startAmbient();
-    }, reduced ? 280 : 1750);
-    window.setTimeout(finish, reduced ? 900 : 3200);
+    }, reduced ? 400 : 2100);
+    window.setTimeout(finish, reduced ? 1100 : 3800);
   }
 
   function toggleSound() {
@@ -283,6 +259,11 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
       kit.master.gain.setTargetAtTime(next ? 1 : 0, kit.ctx.currentTime, 0.05);
     }
   }
+
+  const gGreen = `${uid}-green`;
+  const gTeal = `${uid}-teal`;
+  const gGreen2 = `${uid}-green2`;
+  const noise = `${uid}-noise`;
 
   return (
     <div
@@ -302,14 +283,40 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
         <source src="/videos/landing.mp4" type="video/mp4" />
       </video>
 
-      <div className="kml-wash" />
-      <div className="kml-wash-drift" />
+      <svg className="kml-splashes" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" aria-hidden>
+        <defs>
+          <linearGradient id={gGreen} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#3CFF6E" />
+            <stop offset="100%" stopColor="#0FA24E" />
+          </linearGradient>
+          <linearGradient id={gTeal} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#3CFF6E" />
+            <stop offset="100%" stopColor="#0FE0C4" />
+          </linearGradient>
+          <linearGradient id={gGreen2} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#5CFF8F" />
+            <stop offset="100%" stopColor="#14C77A" />
+          </linearGradient>
+        </defs>
+        <path
+          className="kml-shape-a"
+          fill={`url(#${gGreen})`}
+          d="M1000,0 L1000,720 L860,790 L760,700 L640,760 L560,640 L430,690 L470,540 L360,470 L510,350 L420,220 L560,150 L520,40 L640,0 Z"
+        />
+        <path
+          className="kml-shape-b"
+          fill={`url(#${gTeal})`}
+          d="M1000,560 L1000,1000 L260,1000 L340,880 L460,910 L520,800 L650,830 L700,700 L820,730 L860,610 Z"
+        />
+        <path className="kml-shape-c" fill={`url(#${gGreen2})`} d="M0,0 L230,0 L200,90 L260,150 L150,230 L120,140 L0,150 Z" />
+        <path className="kml-shape-d" fill={`url(#${gGreen2})`} d="M0,760 L110,700 L160,800 L250,830 L200,940 L260,1000 L0,1000 Z" />
+      </svg>
 
       <svg className="kml-grain" width="100%" height="100%" aria-hidden>
-        <filter id={noiseId}>
+        <filter id={noise}>
           <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
         </filter>
-        <rect width="100%" height="100%" filter={`url(#${noiseId})`} />
+        <rect width="100%" height="100%" filter={`url(#${noise})`} />
       </svg>
 
       <button
@@ -336,25 +343,21 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
         </svg>
       </button>
 
-      <div className="kml-teaser">
-        <div className="kml-word">KILELE</div>
-        <div className="kml-sub">Market Link</div>
-      </div>
-
-      <div className="kml-enter-wrap">
-        <button type="button" className="kml-enter-btn" onClick={handleEnter}>
-          Enter
-        </button>
-      </div>
-
       <div className="kml-center">
         <div className="kml-wordwrap">
           <h1 className="kml-word">KILELE</h1>
         </div>
         <div className="kml-subwrap">
-          <div className="kml-sub2">Market Link</div>
+          <div className="kml-sub">Market Link</div>
         </div>
         <div className="kml-underline" />
+      </div>
+
+      <div className={`kml-gate${gateHidden ? " kml-gate-hide" : ""}`}>
+        <h2 className="kml-gate-title">Kilele Market Link</h2>
+        <button type="button" className="kml-enter-btn" onClick={handleEnter}>
+          Enter
+        </button>
       </div>
     </div>
   );
