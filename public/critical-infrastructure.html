@@ -62,12 +62,18 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 
+/* ---------------------------------------------------------------
+   PALETTE
+--------------------------------------------------------------- */
 const CYAN        = 0x5df6ff;
 const CYAN_DIM     = 0x1fa9c9;
 const CYAN_BRIGHT  = 0xbdfeff;
 const AMBER        = 0xffb35c;
 const TEAL_GLOW     = 0x36ffb0;
 
+/* ---------------------------------------------------------------
+   RENDERER / SCENE / CAMERA
+--------------------------------------------------------------- */
 const container = document.getElementById("app");
 const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0x010509, 0.0016);
@@ -93,15 +99,24 @@ controls.minDistance = 150;
 controls.maxDistance = 1100;
 controls.maxPolarAngle = Math.PI * 0.49;
 
+/* ---------------------------------------------------------------
+   POST PROCESSING — BLOOM
+--------------------------------------------------------------- */
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
 const bloom = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.35, 0.55, 0.12);
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
+/* ---------------------------------------------------------------
+   ROOT GROUP (holographic platform floats slightly)
+--------------------------------------------------------------- */
 const plant = new THREE.Group();
 scene.add(plant);
 
+/* ---------------------------------------------------------------
+   BASE PLATFORM — fine grid + bold grid + edge frame
+--------------------------------------------------------------- */
 {
   const fineGeo = new THREE.PlaneGeometry(560, 560, 56, 56);
   fineGeo.rotateX(-Math.PI/2);
@@ -113,6 +128,7 @@ scene.add(plant);
   bold.material.opacity = 0.4;
   plant.add(bold);
 
+  // edge frame
   const half = 280;
   const pts = [ new THREE.Vector3(-half,0.4,-half), new THREE.Vector3(half,0.4,-half),
                 new THREE.Vector3(half,0.4,half),  new THREE.Vector3(-half,0.4,half),
@@ -121,6 +137,7 @@ scene.add(plant);
   const frameMat = new THREE.LineBasicMaterial({ color: CYAN_BRIGHT, transparent:true, opacity:0.85 });
   plant.add(new THREE.Line(frameGeo, frameMat));
 
+  // faint dark disc beneath, for depth / contact shadow feel
   const shadowGeo = new THREE.CircleGeometry(400, 48);
   shadowGeo.rotateX(-Math.PI/2);
   const shadowMat = new THREE.MeshBasicMaterial({ color:0x000000, transparent:true, opacity:0.55 });
@@ -129,6 +146,9 @@ scene.add(plant);
   plant.add(shadowDisc);
 }
 
+/* ---------------------------------------------------------------
+   HELPER: glow sprite (soft dot) for lights / node markers
+--------------------------------------------------------------- */
 function makeGlowTexture() {
   const size = 128;
   const cnv = document.createElement("canvas");
@@ -153,6 +173,9 @@ function addGlowDot(pos, color, scale, opacity=0.9) {
   return spr;
 }
 
+/* ---------------------------------------------------------------
+   COOLING TOWERS (hyperboloid via LatheGeometry) + ring bands
+--------------------------------------------------------------- */
 function buildCoolingTower(scaleFactor = 1) {
   const group = new THREE.Group();
 
@@ -165,6 +188,7 @@ function buildCoolingTower(scaleFactor = 1) {
   const latheMat = new THREE.MeshBasicMaterial({ color: CYAN, wireframe:true, transparent:true, opacity:0.75 });
   group.add(new THREE.Mesh(latheGeo, latheMat));
 
+  // bright horizontal bands at a few heights
   const bandHeights = [0.06, 0.32, 0.58, 0.86];
   bandHeights.forEach(f => {
     const idx = Math.min(profile.length-1, Math.floor(f*(profile.length-1)));
@@ -192,6 +216,9 @@ const towerB = buildCoolingTower(0.92);
 towerB.position.set(28, 0, -34);
 plant.add(towerB);
 
+/* ---------------------------------------------------------------
+   SMALL CHIMNEYS
+--------------------------------------------------------------- */
 function buildChimney(height, radius) {
   const geo = new THREE.CylinderGeometry(radius, radius*1.15, height, 16, Math.ceil(height/10), true);
   const mat = new THREE.MeshBasicMaterial({ color: CYAN, wireframe:true, transparent:true, opacity:0.7 });
@@ -210,6 +237,9 @@ const chimneyB = buildChimney(70, 4.5);
 chimneyB.position.set(-146, 0, 74);
 plant.add(chimneyB);
 
+/* ---------------------------------------------------------------
+   INDUSTRIAL BUILDINGS (edge-wireframe boxes) + tiny amber window lights
+--------------------------------------------------------------- */
 const buildingsGroup = new THREE.Group();
 plant.add(buildingsGroup);
 
@@ -256,6 +286,9 @@ while (buildingCount < 46) {
   buildingCount++;
 }
 
+/* ---------------------------------------------------------------
+   TREES / VEGETATION CLUSTERS (small glowing octahedra)
+--------------------------------------------------------------- */
 const treesGroup = new THREE.Group();
 plant.add(treesGroup);
 
@@ -274,12 +307,18 @@ while (treeCount < 60) {
   treeCount++;
 }
 
+/* ---------------------------------------------------------------
+   SCATTERED CITY-LIGHT DOTS ACROSS THE GRID
+--------------------------------------------------------------- */
 for (let i=0; i<90; i++) {
   const x = (rand()-0.5) * 550;
   const z = (rand()-0.5) * 550;
   addGlowDot(new THREE.Vector3(x, 1.5, z), rand() > 0.75 ? AMBER : CYAN, 3 + rand()*4, 0.6);
 }
 
+/* ---------------------------------------------------------------
+   SMOKE SYSTEM (shader-based particles)
+--------------------------------------------------------------- */
 const smokeVertex = `
   attribute float aAge;
   attribute float aScale;
@@ -406,6 +445,9 @@ function attachChimneyPlume(chimneyGroup, count) {
 attachChimneyPlume(chimneyA, 140);
 attachChimneyPlume(chimneyB, 100);
 
+/* ---------------------------------------------------------------
+   RESIZE
+--------------------------------------------------------------- */
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
@@ -413,6 +455,9 @@ window.addEventListener("resize", () => {
   composer.setSize(window.innerWidth, window.innerHeight);
 });
 
+/* ---------------------------------------------------------------
+   RENDER LOOP
+--------------------------------------------------------------- */
 const clock = new THREE.Clock();
 document.getElementById("loading").style.display = "none";
 
