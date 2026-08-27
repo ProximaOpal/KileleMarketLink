@@ -17,6 +17,25 @@ Open [http://127.0.0.1:43173](http://127.0.0.1:43173).
 
 The Terra map also lives at `/terra-map.html`.
 
+## Deploy on Render
+
+This repo is set up as a **Render Web Service** (Node, `next start`). Blueprint file: `render.yaml`.
+
+1. Push this repo to GitHub.
+2. In the [Render Dashboard](https://dashboard.render.com), create a **Blueprint** from the repo, **or** a **Web Service** with:
+
+   | Setting | Value |
+   | --- | --- |
+   | Runtime | Node |
+   | Branch | `main` |
+   | Build command | `npm ci && ./scripts/render-build.sh` |
+   | Start command | `npm start` |
+   | Node version | `20.18.1` (`NODE_VERSION` env, or `.nvmrc`) |
+
+3. Render sets `PORT` and `RENDER`. `npm start` binds `0.0.0.0` so health checks succeed.
+
+No env secrets are required. After the first deploy, commits to `main` auto-deploy.
+
 ## What is mapped from where
 
 | From | Used for |

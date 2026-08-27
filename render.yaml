@@ -1,0 +1,22 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Dashboard: New → Blueprint → connect this repo (main).
+# Or create a Web Service and paste the build/start commands below.
+
+services:
+  - type: web
+    name: kilele-market-link
+    runtime: node
+    plan: starter
+    region: oregon
+    branch: main
+    buildCommand: npm ci && ./scripts/render-build.sh
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20.18.1
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
