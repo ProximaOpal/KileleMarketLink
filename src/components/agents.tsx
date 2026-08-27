@@ -49,12 +49,19 @@ const AGENTS = [
 ];
 
 export function Agents() {
+  const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const watching = useRef(false);
   const [scales, setScales] = useState(() => AGENTS.map(() => 1));
   const success = useSuccess();
 
   useEffect(() => {
-    const onScroll = () => {
+    const section = sectionRef.current;
+    let ticking = false;
+
+    const measure = () => {
+      ticking = false;
+      if (!watching.current) return;
       setScales(
         AGENTS.map((_, index) => {
           const next = cardRefs.current[index + 1];
@@ -66,13 +73,34 @@ export function Agents() {
         }),
       );
     };
-    onScroll();
+
+    const onScroll = () => {
+      if (!watching.current || ticking) return;
+      ticking = true;
+      requestAnimationFrame(measure);
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        watching.current = entry.isIntersecting;
+        if (entry.isIntersecting) onScroll();
+      },
+      { rootMargin: "240px 0px" },
+    );
+    if (section) io.observe(section);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
-    <section id="agents" className="relative z-10 border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20">
+    <section
+      id="agents"
+      ref={sectionRef}
+      className="relative z-10 border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20"
+    >
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHeading

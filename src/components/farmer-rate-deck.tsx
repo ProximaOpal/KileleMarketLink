@@ -221,7 +221,7 @@ const FARMERS: Farmer[] = [
 ];
 
 const LAST = FARMERS.length - 1;
-const SPRING = { type: "spring" as const, stiffness: 280, damping: 34, mass: 0.72 };
+const SNAP = { type: "tween" as const, duration: 0.28, ease: [0.22, 1, 0.36, 1] as const };
 
 export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
   const viewport = useRef<HTMLDivElement>(null);
@@ -230,6 +230,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
   const [index, setIndex] = useState(0);
   const [ratings, setRatings] = useState(() => FARMERS.map((f) => f.rating));
   const indexRef = useRef(0);
+  const inView = useRef(true);
   const success = useSuccess();
   indexRef.current = index;
 
@@ -244,7 +245,14 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
     apply();
     const ro = new ResizeObserver(apply);
     ro.observe(el);
-    return () => ro.disconnect();
+    const io = new IntersectionObserver(([entry]) => {
+      inView.current = entry.isIntersecting;
+    }, { threshold: 0.25 });
+    io.observe(el);
+    return () => {
+      ro.disconnect();
+      io.disconnect();
+    };
   }, [x]);
 
   const go = useCallback(
@@ -252,7 +260,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
       const next = Math.max(0, Math.min(LAST, i));
       setIndex(next);
       if (!width) return;
-      animate(x, -next * width, SPRING);
+      animate(x, -next * width, SNAP);
     },
     [width, x],
   );
@@ -262,24 +270,29 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
     if (!el) return;
     let lock = 0;
     const onWheel = (event: WheelEvent) => {
-      const dominant = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      const absX = Math.abs(event.deltaX);
+      const absY = Math.abs(event.deltaY);
+      // On the home page, never steal vertical scroll for the carousel.
+      if (embedded && (absX <= absY || absX < 24)) return;
+      const dominant = embedded || absX > absY ? event.deltaX : event.deltaY;
       if (Math.abs(dominant) < 20) return;
       const dir = dominant > 0 ? 1 : -1;
       const atEnd = dir > 0 && indexRef.current === LAST;
       const atStart = dir < 0 && indexRef.current === 0;
       if (atEnd || atStart) return;
       event.preventDefault();
-      const now = Date.now();
-      if (now - lock < 480) return;
+      const now = performance.now();
+      if (now - lock < 220) return;
       lock = now;
       go(indexRef.current + dir);
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
-  }, [go]);
+  }, [embedded, go]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      if (!inView.current) return;
       if (event.key === "ArrowRight") go(indexRef.current + 1);
       if (event.key === "ArrowLeft") go(indexRef.current - 1);
     };
@@ -288,25 +301,25 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
   }, [go]);
 
   useEffect(() => {
-    const strips = viewport.current?.querySelectorAll<HTMLElement>("[data-team-strip]");
-    const el = strips?.[index];
-    const child = el?.children[index] as HTMLElement | undefined;
-    child?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    const strip = viewport.current?.querySelector<HTMLElement>(`[data-team-strip="${index}"]`);
+    const child = strip?.children[index] as HTMLElement | undefined;
+    if (!strip || !child) return;
+    strip.scrollLeft = child.offsetLeft - strip.clientWidth / 2 + child.clientWidth / 2;
   }, [index]);
 
   return (
     <div
       id={embedded ? "farmers" : undefined}
       ref={viewport}
-      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden text-black"
+      className="farmer-deck relative h-[100svh] min-h-[640px] w-full overflow-hidden text-black"
       style={{ background: FARMERS[index]?.pageBg ?? "#c8f542" }}
     >
       <motion.div
-        className="flex h-full"
+        className="flex h-full will-change-transform"
         style={{ x, width: width ? width * FARMERS.length : "100%" }}
         drag={width ? "x" : false}
         dragDirectionLock
-        dragElastic={0.16}
+        dragElastic={0.08}
         dragConstraints={width ? { left: -width * LAST, right: 0 } : undefined}
         onDragEnd={(_, info) => {
           if (!width) return;
@@ -320,6 +333,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
       >
         {FARMERS.map((farmer, i) => {
           const active = i === index;
+          const nearby = Math.abs(i - index) <= 1;
           return (
             <article
               key={farmer.id}
@@ -341,28 +355,25 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
               )}
 
               <div className="relative mx-auto mt-1 h-[44%] max-h-[420px] w-full max-w-[440px]">
-                <motion.div
+                <div
                   className="absolute left-1/2 top-[6%] h-[82%] w-[76%] -translate-x-1/2 rounded-full"
                   style={{ background: farmer.aura }}
-                  animate={{ scale: active ? 1 : 0.82, opacity: active ? 1 : 0.4 }}
-                  transition={SPRING}
                   aria-hidden
                 />
-                <motion.img
-                  src={farmer.portrait}
-                  alt={farmer.name}
-                  draggable={false}
-                  className="relative z-10 mx-auto h-full w-auto max-w-[94%] object-contain object-bottom drop-shadow-[0_18px_28px_rgba(0,0,0,0.22)]"
-                  animate={{ scale: active ? 1 : 0.88, y: active ? 0 : 28, opacity: active ? 1 : 0.35 }}
-                  transition={SPRING}
-                />
+                {nearby ? (
+                  <img
+                    src={farmer.portrait}
+                    alt={farmer.name}
+                    draggable={false}
+                    loading={active ? "eager" : "lazy"}
+                    decoding="async"
+                    fetchPriority={active ? "high" : "low"}
+                    className="relative z-10 mx-auto h-full w-auto max-w-[94%] object-contain object-bottom"
+                  />
+                ) : null}
               </div>
 
-              <motion.div
-                className="relative z-10 mx-auto max-w-[440px] px-7 pb-[7.5rem] pt-1"
-                animate={{ y: active ? 0 : 18, opacity: active ? 1 : 0.25 }}
-                transition={SPRING}
-              >
+              <div className="relative z-10 mx-auto max-w-[440px] px-7 pb-[7.5rem] pt-1">
                 <p className="text-[15px] font-semibold" style={{ color: farmer.accent }}>
                   Farmer details
                 </p>
@@ -398,11 +409,12 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                     </span>
                   </div>
                   <div className="h-[3px] w-full rounded-full bg-black/15">
-                    <motion.div
+                    <div
                       className="h-full rounded-full bg-black"
-                      initial={false}
-                      animate={{ width: active ? `${farmer.fill}%` : "0%" }}
-                      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                      style={{
+                        width: active ? `${farmer.fill}%` : "0%",
+                        transition: active ? "width 0.32s ease-out" : undefined,
+                      }}
                     />
                   </div>
                 </div>
@@ -417,40 +429,43 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                       {i + 1} / {FARMERS.length}
                     </span>
                   </div>
-                  <div data-team-strip className="farmer-scroller flex gap-2.5 overflow-x-auto pb-1">
-                    {FARMERS.map((mate, t) => (
-                      <motion.button
-                        key={mate.id}
-                        type="button"
-                        onClick={() => go(t)}
-                        aria-label={mate.name}
-                        whileTap={{ scale: 0.92 }}
-                        className="shrink-0"
-                      >
-                        <img
-                          src={mate.avatar}
-                          alt={mate.name}
-                          draggable={false}
-                          className={cn(
-                            "h-12 w-12 rounded-[10px] object-cover transition-[box-shadow] duration-300",
-                            t === index && "ring-2 ring-black/70",
-                          )}
-                        />
-                      </motion.button>
-                    ))}
-                  </div>
+                  {nearby ? (
+                    <div data-team-strip={i} className="farmer-scroller flex gap-2.5 overflow-x-auto pb-1">
+                      {FARMERS.map((mate, t) => (
+                        <button
+                          key={mate.id}
+                          type="button"
+                          onClick={() => go(t)}
+                          aria-label={mate.name}
+                          className="shrink-0"
+                        >
+                          <img
+                            src={mate.avatar}
+                            alt={mate.name}
+                            draggable={false}
+                            loading="lazy"
+                            decoding="async"
+                            className={cn(
+                              "h-12 w-12 rounded-[10px] object-cover",
+                              t === index && "ring-2 ring-black/70",
+                            )}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="h-12" aria-hidden />
+                  )}
                 </div>
-              </motion.div>
+              </div>
 
               <div
                 className="absolute inset-x-4 z-30 flex items-center justify-between rounded-[18px] px-5 py-3"
                 style={{ bottom: "max(1rem, env(safe-area-inset-bottom))", background: farmer.bar }}
               >
                 <p className="max-w-[58%] text-[12px] leading-snug text-white/85">{farmer.lastHaul}</p>
-                <motion.button
+                <button
                   type="button"
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
                   onClick={() =>
                     success.show({
                       title: "Team linked",
@@ -460,7 +475,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                   className="inline-flex h-11 shrink-0 items-center rounded-xl bg-[#f0c01a] px-4 text-[14px] font-semibold text-black"
                 >
                   Team chat
-                </motion.button>
+                </button>
               </div>
             </article>
           );
@@ -476,38 +491,33 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
             onClick={() => go(d)}
             className="pointer-events-auto"
           >
-            <motion.span
-              className="block w-1.5 rounded-full bg-black"
-              animate={{ height: d === index ? 18 : 6, opacity: d === index ? 1 : 0.28 }}
-              transition={{ type: "spring", stiffness: 400, damping: 28 }}
+            <span
+              className="block w-1.5 rounded-full bg-black transition-[height,opacity] duration-150"
+              style={{ height: d === index ? 18 : 6, opacity: d === index ? 1 : 0.28 }}
             />
           </button>
         ))}
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-1/2 z-40 hidden -translate-y-1/2 justify-between px-3 sm:flex">
-        <motion.button
+        <button
           type="button"
           aria-label="Previous farmer"
           onClick={() => go(index - 1)}
           disabled={index === 0}
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.94 }}
           className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-black/[0.08] disabled:opacity-20"
         >
           <ChevronLeft className="h-5 w-5" />
-        </motion.button>
-        <motion.button
+        </button>
+        <button
           type="button"
           aria-label="Next farmer"
           onClick={() => go(index + 1)}
           disabled={index === LAST}
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.94 }}
           className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-black/[0.08] disabled:opacity-20"
         >
           <ChevronRight className="h-5 w-5" />
-        </motion.button>
+        </button>
       </div>
     </div>
   );

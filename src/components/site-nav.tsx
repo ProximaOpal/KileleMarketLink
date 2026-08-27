@@ -36,10 +36,9 @@ export function SiteNav() {
         <nav
           className={cn(
             "flex items-center justify-between rounded-2xl border border-[#0a0a0a]/12 px-5 py-3",
-            "bg-white/70 shadow-[0_12px_32px_rgba(10,10,10,0.12),0_2px_8px_rgba(10,10,10,0.06)]",
-            scrolled && "bg-white/88",
+            "bg-white/92 shadow-[0_8px_24px_rgba(10,10,10,0.08)]",
+            scrolled && "bg-white",
           )}
-          style={{ backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
         >
           <Link href={pathname === "/" ? "#top" : "/"} className="font-pixel text-[10px] tracking-[0.25em] text-[#0a0a0a]">
             AGENTIC
@@ -93,8 +92,7 @@ export function SiteNav() {
             style={{ maxHeight: open ? 520 : 0, opacity: open ? 1 : 0 }}
         >
           <div
-            className="flex flex-col rounded-2xl border border-[#0a0a0a]/12 bg-white/90 px-2 py-2"
-            style={{ backdropFilter: "blur(16px)" }}
+            className="flex flex-col rounded-2xl border border-[#0a0a0a]/12 bg-white px-2 py-2"
           >
             {LINKS.map((link) => (
               <a
