@@ -60,13 +60,13 @@ export function InstallPrompt() {
           style={{ bottom: "max(1rem, env(safe-area-inset-bottom))" }}
         >
           <div
-            className="flex items-start gap-3 rounded-2xl border border-white/15 px-4 py-3.5 shadow-[0_16px_40px_rgba(0,0,0,0.4)]"
-            style={{ background: "rgba(16,14,14,0.88)", backdropFilter: "blur(18px)" }}
+            className="flex items-start gap-3 rounded-2xl border border-[#163a28]/15 bg-white/92 px-4 py-3.5 shadow-[0_16px_40px_rgba(22,58,40,0.16)]"
+            style={{ background: "rgba(244,248,241,0.94)", backdropFilter: "blur(18px)" }}
           >
             <img src="/icons/icon-192.png" alt="" className="mt-0.5 h-11 w-11 rounded-xl object-cover" />
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-medium text-white">Install Agentic on this phone</p>
-              <p className="mt-0.5 text-[12px] leading-snug text-white/50">
+              <p className="text-sm font-medium text-[#14261a]">Install Agentic on this phone</p>
+              <p className="mt-0.5 text-[12px] leading-snug text-[#163a28]/55">
                 {iosHint && !deferred
                   ? "On iPhone: tap Share, then Add to Home Screen."
                   : "Add the farm-to-city dispatch board to your home screen. Works in Chrome."}
@@ -76,7 +76,7 @@ export function InstallPrompt() {
                   <button
                     type="button"
                     onClick={install}
-                    className="rounded-full bg-[#e66d1e] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-white"
+                    className="rounded-full bg-[#163a28] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-white"
                   >
                     Install
                   </button>
@@ -84,7 +84,7 @@ export function InstallPrompt() {
                 <button
                   type="button"
                   onClick={() => setHidden(true)}
-                  className="rounded-full border border-white/15 px-3.5 py-1.5 text-[11px] tracking-wide text-white/60"
+                  className="rounded-full border border-[#163a28]/20 px-3.5 py-1.5 text-[11px] tracking-wide text-[#163a28]/60"
                 >
                   Not now
                 </button>

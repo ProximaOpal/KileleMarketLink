@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #0c0a0a;
-  --foreground: #ffffff;
-  --accent: #e66d1e;
-  --gold: #fdbb2d;
-  --teal: #1a5c55;
+  --background: #f4f8f1;
+  --foreground: #14261a;
+  --accent: #2f7a3e;
+  --lime: #c6e86a;
+  --forest: #163a28;
+  --leaf: #4c9a4e;
 }
 
 html {
@@ -17,7 +18,7 @@ html {
 
 body {
   color: var(--foreground);
-  background: #0c0a0a;
+  background: #f4f8f1;
   font-family: var(--font-display), "IBM Plex Sans", system-ui, sans-serif;
   overflow-x: hidden;
   padding-bottom: env(safe-area-inset-bottom);
@@ -31,13 +32,13 @@ body {
   font-family: var(--font-pixel), ui-monospace, monospace;
 }
 
-.frosted-backdrop {
+.paper-cut-backdrop {
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, rgba(10, 8, 8, 0.35), rgba(10, 8, 8, 0.18)),
-    url("/images/frosted-bg.jpg") center / cover no-repeat;
+    linear-gradient(180deg, rgba(244, 248, 241, 0.72) 0%, rgba(244, 248, 241, 0.28) 42%, rgba(244, 248, 241, 0.55) 100%),
+    url("/images/paper-cut-bg.png") center / cover no-repeat;
 }
 
 @keyframes fadeInUp {
@@ -101,48 +102,3 @@ body {
     visibility: hidden;
   }
 }
-
-/* Discover page — stepped cream floor with inner fillet (reference geometry) */
-.discover-floor {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 132px;
-  background: #f4efe8;
-}
-
-.discover-floor-rise {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: min(46%, 540px);
-  height: 228px;
-  background: #f4efe8;
-  border-top-right-radius: 44px;
-}
-
-.discover-floor-fillet {
-  position: absolute;
-  bottom: 132px;
-  left: min(46%, 540px);
-  width: 44px;
-  height: 44px;
-  pointer-events: none;
-  border-radius: 50%;
-  box-shadow: -44px 44px 0 0 #f4efe8;
-}
-
-@media (max-width: 1023px) {
-  .discover-floor {
-    height: auto;
-    top: auto;
-    background: #f4efe8;
-  }
-
-  .discover-floor-rise,
-  .discover-floor-fillet {
-    display: none;
-  }
-}
-

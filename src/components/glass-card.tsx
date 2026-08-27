@@ -26,7 +26,8 @@ export function GlassCard({
       whileHover={{ y: -6, scale: 1.012 }}
       transition={{ type: "spring", stiffness: 340, damping: 26 }}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-white/[0.12] bg-[rgba(18,16,16,0.48)]",
+        "group relative overflow-hidden rounded-2xl border border-[#163a28]/12 bg-white/72",
+        "shadow-[0_18px_40px_rgba(22,58,40,0.08)]",
         className,
       )}
       style={{ backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)" }}
@@ -35,7 +36,7 @@ export function GlassCard({
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(253,187,45,0.12), transparent 60%)",
+            "radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(198,232,106,0.28), transparent 60%)",
         }}
       />
       {children}

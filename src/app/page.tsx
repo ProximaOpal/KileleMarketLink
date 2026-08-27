@@ -1,7 +1,6 @@
 import { Agents } from "@/components/agents";
 import { CtaFooter } from "@/components/cta-footer";
 import { DevEx } from "@/components/devex";
-import { Discover } from "@/components/discover";
 import { Hero } from "@/components/hero";
 import { Integrations } from "@/components/integrations";
 import { IntroSplash } from "@/components/intro-splash";
@@ -17,13 +16,12 @@ import { Workflow } from "@/components/workflow";
 
 export default function Home() {
   return (
-    <div className="relative isolate min-h-screen overflow-x-hidden text-white">
-      <div className="frosted-backdrop" aria-hidden />
+    <div className="relative isolate min-h-screen overflow-x-hidden text-[#14261a]">
+      <div className="paper-cut-backdrop" aria-hidden />
       <IntroSplash />
       <SiteNav />
       <Hero />
       <FarmerRateDeck embedded />
-      <Discover />
       <Platform />
       <Agents />
       <Workflow />

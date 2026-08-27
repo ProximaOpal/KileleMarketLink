@@ -2,7 +2,7 @@
 
 GitHub: [ProximaOpal/KileleMarketLink](https://github.com/ProximaOpal/KileleMarketLink)
 
-This landing keeps the **AGENTIC** layout and frosted palette. Copy and photography are farm-to-city **foodstuff delivery**: harvest batches, cold-chain telematics, Nairobi corridor timing, and urban nodes for Tatu City, Konza City, factories, and dark stores.
+Green-and-white **paper-cut** theme with generated leaf photography. The **AGENTIC** layout stays: harvest batches, cold-chain telematics, Nairobi corridor timing, and urban nodes for Tatu City, Konza City, factories, and dark stores.
 
 Install as a **PWA** from Chrome (Install prompt) for a home-screen dispatch board.
 
@@ -19,7 +19,7 @@ Open [http://127.0.0.1:43173](http://127.0.0.1:43173).
 
 The Terra map also lives at `/terra-map.html`.
 
-Farmer rate cards are a full-viewport section on the landing (`#farmers`), right after the hero. Swipe horizontally between growers. The same deck also lives at `/farmers`. Each card keeps the circle aura behind a cut-out farmer portrait, farmer details, review stars, co-op avatars, and last-haul stats.
+Farmer rate cards are a full-viewport section on the landing (`#farmers`), right after the hero. Swipe horizontally between growers. The same deck also lives at `/farmers`.
 
 ## Deploy on Render
 
@@ -44,6 +44,6 @@ No env secrets are required. After the first deploy, commits to `main` auto-depl
 
 | From | Used for |
 | --- | --- |
-| Frosted Authentication Page | Mesh gradient, dark frosted glass, white/gray type, orange accent |
+| Green paper-cut templates | Layered forest / lime / white shapes, leaf photography, light surfaces |
 | AGENTIC landing | Geometry, nav, hero, sticky agent cards, photo stacks, workflow, pricing, icons |
 | Terra map HTML | Full-viewport Live Earth Map as you scroll |

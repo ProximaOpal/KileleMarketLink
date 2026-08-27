@@ -6,31 +6,31 @@ const STEPS = [
     n: "01",
     title: "Harvest",
     body: "Capture volume, crop, and timestamp at the farm gate before the crate leaves the soil.",
-    image: "/images/harvest-gate.jpg",
+    image: "/images/leaves-kale.jpg",
   },
   {
     n: "02",
     title: "Route",
     body: "Time the northern corridor and Nairobi arterials so the batch hits its urban window.",
-    image: "/images/urban-nodes.jpg",
+    image: "/images/leaves-field.jpg",
   },
   {
     n: "03",
     title: "Monitor",
     body: "Watch GPS and cargo temperature. Alert the driver before the cold chain breaks.",
-    image: "/images/telematics.jpg",
+    image: "/images/leaves-canopy.jpg",
   },
   {
     n: "04",
     title: "Drop",
     body: "Consolidate into Tatu, Konza, factory docks, dark stores, or high-density housing.",
-    image: "/images/food-factory.jpg",
+    image: "/images/leaves-tall.jpg",
   },
 ];
 
 export function Workflow() {
   return (
-    <section id="workflow" className="relative z-10 border-t border-white/[0.08] px-6 py-32 md:px-12 lg:px-20">
+    <section id="workflow" className="relative z-10 border-t border-[#163a28]/10 px-6 py-32 md:px-12 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16">
           <SectionHeading
@@ -59,11 +59,11 @@ export function Workflow() {
                 />
               </div>
               <div className="relative z-10 p-7">
-                <span className="block font-pixel text-[11px] tracking-widest text-white/25">{step.n}</span>
+                <span className="block font-pixel text-[11px] tracking-widest text-[#163a28]/30">{step.n}</span>
               </div>
               <div className="relative z-10 mt-auto px-7 pb-7 pt-16">
                 <h3 className="mb-3 text-2xl font-light">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-white/45">{step.body}</p>
+                <p className="text-sm leading-relaxed text-[#14261a]/55">{step.body}</p>
               </div>
             </GlassCard>
           ))}
