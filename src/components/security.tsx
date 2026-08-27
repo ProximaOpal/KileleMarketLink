@@ -2,11 +2,11 @@ import { SectionHeading } from "@/components/section-heading";
 import { GlassCard } from "@/components/glass-card";
 
 const EVENTS = [
-  { time: "12:34:21", event: "agent_executed" },
-  { time: "12:34:18", event: "decision_logged" },
-  { time: "12:34:15", event: "tool_called" },
-  { time: "12:34:12", event: "memory_updated" },
-  { time: "12:34:09", event: "output_generated" },
+  { time: "12:34:21", event: "batch_logged" },
+  { time: "12:34:18", event: "temp_probe_ok" },
+  { time: "12:34:15", event: "route_recomputed" },
+  { time: "12:34:12", event: "decay_prioritized" },
+  { time: "12:34:09", event: "node_drop_confirmed" },
 ];
 
 export function Security() {
@@ -18,7 +18,7 @@ export function Security() {
             eyebrow="SECURITY"
             title={
               <>
-                Enterprise-grade
+                Cold-chain grade
                 <br />
                 from day one.
               </>
@@ -28,13 +28,13 @@ export function Security() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="space-y-6">
             <p className="text-sm leading-relaxed text-white/45">
-              Every action is logged, every decision is traceable. Built for teams that need compliance without compromise.
+              Every crate is logged, every degree is traceable. Built for perishable food that cannot miss a city window.
             </p>
             <div className="space-y-4">
               {[
                 ["SOC 2 Type II", "Independently audited security controls"],
-                ["Full Audit Trail", "Every decision logged with full traceability"],
-                ["Real-time Observability", "Monitor, debug, and replay any execution"],
+                ["Full Audit Trail", "Every batch and temperature logged with full traceability"],
+                ["Real-time Observability", "Replay any haul from farm gate to factory dock"],
               ].map(([title, body]) => (
                 <div key={title} className="flex gap-4">
                   <div className="w-1 shrink-0 rounded-full bg-white/15" />
@@ -46,7 +46,7 @@ export function Security() {
               ))}
             </div>
             <div className="flex flex-col gap-2 pt-4">
-              {["SOC 2", "GDPR", "HIPAA Ready", "ISO 27001"].map((item) => (
+              {["SOC 2", "GDPR", "Food safety", "ISO 22000"].map((item) => (
                 <div key={item} className="flex items-center gap-2 text-xs text-white/30">
                   <span className="h-1 w-1 rounded-full bg-white/30" />
                   {item}

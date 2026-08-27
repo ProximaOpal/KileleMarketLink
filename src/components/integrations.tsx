@@ -9,21 +9,21 @@ export function Integrations() {
             eyebrow="INTEGRATIONS"
             title={
               <>
-                Connect any tool.
+                Connect any farm.
                 <br />
-                Control any system.
+                Reach any dock.
               </>
             }
           />
           <p className="max-w-xs text-sm leading-relaxed text-white/45">
-            200+ native connectors. Everything from Slack to your internal database. Build custom tools with our SDK in minutes.
+            IoT probes, fleet GPS, dark-store APIs, and factory intake. Wire a new drop node in minutes.
           </p>
         </div>
         <div className="flex flex-col overflow-hidden rounded-2xl border border-white/[0.12] md:relative md:block">
           <div className="relative h-[280px] w-full shrink-0 md:h-[480px]">
             <img
-              src="/images/org-arc.png"
-              alt="Agent orchestration architecture"
+              src="/images/produce-arc.jpg"
+              alt="Produce crates staged for city and factory delivery"
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-black/25" />
@@ -36,25 +36,25 @@ export function Integrations() {
               <span className="inline-flex items-center rounded-full bg-white/[0.06] px-3 py-1 text-[11px] tracking-widest text-white/45">
                 SDK
               </span>
-              <h3 className="mb-2 mt-3 text-lg font-light">Build custom tools</h3>
+              <h3 className="mb-2 mt-3 text-lg font-light">Batch intake hooks</h3>
               <p className="mb-4 text-xs leading-relaxed text-white/45">
-                Define any function as a tool your agents can call. TypeScript and Python.
+                Push harvest events from the gate: crop, kilos, and the decay clock.
               </p>
               <div className="rounded-lg border border-white/10 bg-black/30 p-3 font-mono text-[11px] leading-relaxed text-white/55">
-                <span className="text-white/25">{"// tool definition"}</span>
+                <span className="text-white/25">{"// farm gate"}</span>
                 <br />
-                <span className="text-orange-300/80">defineTool</span>
+                <span className="text-orange-300/80">logBatch</span>
                 {`({`}
                 <br />
                 {"  "}
-                <span className="text-amber-200/80">name</span>: <span className="text-emerald-300/80">&apos;fetchPrice&apos;</span>,
+                <span className="text-amber-200/80">crop</span>: <span className="text-emerald-300/80">&apos;kale&apos;</span>,
                 <br />
                 {"  "}
-                <span className="text-amber-200/80">run</span>: <span className="text-white/40">async (q) </span>
-                {`=>`}
+                <span className="text-amber-200/80">kg</span>: <span className="text-white/40">420</span>
+                {`,`}
                 <br />
-                {"    "}
-                <span className="text-orange-300/80">api</span>.get(q)
+                {"  "}
+                <span className="text-amber-200/80">gate</span>: <span className="text-emerald-300/80">&apos;Kiambu&apos;</span>
                 <br />
                 {`})`}
               </div>
@@ -65,10 +65,10 @@ export function Integrations() {
             >
               <div className="mb-2 flex items-center gap-2">
                 <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-400/80" />
-                <span className="text-xs tracking-widest text-white/40">LIVE API</span>
+                <span className="text-xs tracking-widest text-white/40">LIVE FLEET</span>
               </div>
               <p className="text-sm text-white/45">
-                Full REST + WebSocket API. Stream agent outputs directly into your product.
+                Stream GPS and cargo temperature into Tatu, Konza, and factory intake.
               </p>
             </div>
           </div>

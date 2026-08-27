@@ -1,10 +1,10 @@
 const ROWS = [
-  { agent: "analyst-7f2a", color: "#E66D1E", task: "Generating Q2 financial report", region: "us-east", status: "running" },
-  { agent: "executor-3b1c", color: "#FDBB2D", task: "Running integration test suite", region: "eu-west", status: "running" },
-  { agent: "researcher-2c8f", color: "#1a5c55", task: "Scraping competitor pricing data", region: "us-west", status: "queued" },
-  { agent: "planner-5a3d", color: "#c45c3e", task: "Syncing Notion docs with Linear", region: "eu-central", status: "running" },
-  { agent: "coder-8d1a", color: "#8B2318", task: "Refactoring auth module — 3 files", region: "ap-south", status: "running" },
-  { agent: "monitor-9d4e", color: "#4ade80", task: "Monitoring uptime across 8 regions", region: "us-east", status: "complete" },
+  { agent: "harvest-kiambu", color: "#E66D1E", task: "Logging 420kg kale — decay clock 11h", region: "kiambu", status: "running" },
+  { agent: "cold-nairobi-3", color: "#FDBB2D", task: "Reefer 3.8°C — Thika Rd window", region: "nairobi", status: "running" },
+  { agent: "route-north-1", color: "#1a5c55", task: "Bypassing Uhuru Hwy bottleneck", region: "corridor", status: "queued" },
+  { agent: "node-tatu", color: "#c45c3e", task: "Consolidated drop — Tatu City dark store", region: "tatu", status: "running" },
+  { agent: "node-konza", color: "#8B2318", task: "Factory intake — Konza tech hub", region: "konza", status: "running" },
+  { agent: "probe-eldoret", color: "#4ade80", task: "Temp alert cleared — maize lot 19", region: "eldoret", status: "complete" },
 ];
 
 export function Live() {
@@ -18,24 +18,24 @@ export function Live() {
           </span>
         </div>
         <h2 className="mb-4 font-display text-4xl font-light leading-[1.05] tracking-tight md:text-5xl">
-          Agents working
+          Crates moving
           <br />
-          24 / 7, autonomously.
+          24 / 7, on the clock.
         </h2>
         <p className="mb-12 max-w-lg text-sm leading-relaxed text-white/45">
-          At any moment, thousands of agents are running tasks on behalf of teams around the world — no human in the loop.
+          At any moment, harvest lots are decaying, reefers are reporting, and urban nodes in Tatu and Konza are taking drops — no dispatcher guessing FIFO.
         </p>
         <div className="mb-6 font-display text-sm text-white/50">
-          <span className="text-2xl font-light text-white">3,847</span> agents active globally
+          <span className="text-2xl font-light text-white">3,847</span> batches in transit
         </div>
         <div
           className="overflow-x-auto rounded-2xl border border-white/[0.12]"
           style={{ backdropFilter: "blur(18px)", background: "rgba(16,14,14,0.45)" }}
         >
             <div className="grid min-w-[640px] grid-cols-[1.1fr_1.6fr_0.7fr_0.6fr] gap-4 border-b border-white/[0.08] px-5 py-3 text-[10px] uppercase tracking-widest text-white/35">
-            <div>AGENT</div>
+            <div>FLEET</div>
             <div>TASK</div>
-            <div>REGION</div>
+            <div>NODE</div>
             <div>STATUS</div>
           </div>
           {ROWS.map((row) => (

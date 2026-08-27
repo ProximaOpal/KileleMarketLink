@@ -15,7 +15,7 @@ export function Platform() {
               <>
                 Everything you need
                 <br />
-                to ship agents.
+                to move harvests.
               </>
             }
           />
@@ -23,7 +23,7 @@ export function Platform() {
         <div className="grid grid-cols-12 gap-3">
           <GlassCard className="relative col-span-12 flex min-h-[200px] flex-col justify-between overflow-hidden p-8">
             <img
-              src="/images/arc.png"
+              src="/images/produce-arc.jpg"
               alt=""
               aria-hidden
               className="absolute inset-0 h-full w-full object-cover"
@@ -51,9 +51,9 @@ export function Platform() {
               >
                 <Target className="h-[18px] w-[18px]" strokeWidth={1.5} />
               </div>
-              <h3 className="mb-3 text-xl font-light">Visual Agent Builder</h3>
+              <h3 className="mb-3 text-xl font-light">Farm-gate batch tracker</h3>
               <p className="max-w-sm text-sm leading-relaxed text-white/45">
-                Drag, connect, and configure agents through an intuitive graph editor. No boilerplate. Ship in minutes, not days.
+                Log harvest volume, crop category, and timestamp at the gate. Decay curves surface the crates that must move first.
               </p>
             </div>
           </GlassCard>
@@ -61,27 +61,27 @@ export function Platform() {
             <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl border border-white/15">
               <Activity className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </div>
-            <h3 className="mb-2 text-lg font-light">Real-time Monitoring</h3>
+            <h3 className="mb-2 text-lg font-light">GPS telematics</h3>
             <p className="text-sm leading-relaxed text-white/45">
-              Trace every decision. Debug with full execution history and live logs.
+              Live fleet maps from rural farms to urban hubs. Temperature alerts before spoilage, not after.
             </p>
           </GlassCard>
           <GlassCard className="col-span-12 min-h-[200px] p-8 md:col-span-4">
             <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl border border-white/15">
               <Layers className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </div>
-            <h3 className="mb-2 text-lg font-light">Memory & Context</h3>
+            <h3 className="mb-2 text-lg font-light">Shelf-life decay</h3>
             <p className="text-sm leading-relaxed text-white/45">
-              Persistent long-term memory across sessions. Agents learn from every interaction.
+              Perishable batches ranked by actual urgency — not first-in, first-out.
             </p>
           </GlassCard>
           <GlassCard className="col-span-12 min-h-[200px] p-8 md:col-span-4">
             <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl border border-white/15">
               <Shield className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </div>
-            <h3 className="mb-2 text-lg font-light">Guardrails & Permissions</h3>
+            <h3 className="mb-2 text-lg font-light">Urban & factory nodes</h3>
             <p className="text-sm leading-relaxed text-white/45">
-              Define what agents can and cannot do. Fine-grained access control per tool.
+              Tatu City, Konza City, dark stores, and factory floors — planned cities without a hinterland still get fresh food.
             </p>
           </GlassCard>
         </div>

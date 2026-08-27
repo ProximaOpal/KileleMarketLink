@@ -11,29 +11,30 @@ import {
   Ruler,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const PAGE_LINKS = [
   { href: "#discover", label: "Home" },
-  { href: "#agents", label: "Properties" },
-  { href: "#platform", label: "Members" },
-  { href: "#workflow", label: "Pages" },
-  { href: "#live", label: "Blogs" },
+  { href: "#agents", label: "Farms" },
+  { href: "#platform", label: "Fleet" },
+  { href: "#workflow", label: "Routes" },
+  { href: "#live", label: "Hubs" },
 ];
 
-const AGENT_TYPES = ["Show all", "Researcher", "Coder", "Analyst", "Executor"];
-const TASK_RANGES = ["Any scale", "Sandbox", "Production", "Enterprise"];
+const AGENT_TYPES = ["Show all", "Harvest", "Cold chain", "Routing", "Nodes"];
+const TASK_RANGES = ["Any window", "Farm gate", "Urban hub", "Factory"];
 
 const SERVICES = [
   {
     title: "Comfortable",
     body: "Facebook Ads, Google Ads, LinkedIn Ads,",
-    mapped: "Tracing, live logs, evals, and replay.",
+    mapped: "Decay clocks, harvest lots, and gate timestamps.",
     icon: "megaphone" as const,
   },
   {
     title: "Luxury",
     body: "Instagram Ads, TikTok Ads, YouTube Ads,",
-    mapped: "Queues, retries, webhooks, and SLAs.",
+    mapped: "Tatu, Konza, factory docks, and dark stores.",
     icon: "grid" as const,
   },
 ];
@@ -56,13 +57,13 @@ export function Discover() {
     <section id="discover" className="relative z-10 px-3 pb-4 pt-24 md:px-5 md:pb-5">
       <div className="discover-shell relative mx-auto min-h-[calc(100svh-6.5rem)] overflow-hidden rounded-[28px] bg-[#12100f] md:rounded-[40px] lg:rounded-[44px]">
         <img
-          src="/images/org-arc.png"
+          src="/images/urban-nodes.jpg"
           alt=""
           aria-hidden
           className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[58%] object-cover object-[center_42%] lg:block"
         />
         <img
-          src="/images/org-arc.png"
+          src="/images/urban-nodes.jpg"
           alt=""
           aria-hidden
           className="pointer-events-none absolute inset-0 h-[46%] w-full object-cover object-center opacity-70 lg:hidden"
@@ -94,17 +95,17 @@ export function Discover() {
             <h2 className="mt-6 font-display text-[40px] font-semibold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-[56px]">
               Choose Your Best
               <br />
-              Agent Fleet.
+              Harvest Run.
             </h2>
             <p className="mt-4 max-w-[340px] text-[15px] font-medium leading-relaxed text-white/55">
-              Agents &amp; workflows to deploy or compose — live in 180+ countries.
+              Foodstuff from Kenyan farms to Tatu, Konza, factories, and city dark stores.
             </p>
 
             <div ref={formRef} className="relative mt-7 max-w-[540px]">
               <div className="flex flex-col overflow-hidden rounded-[28px] bg-[#f4efe8] shadow-[0_18px_40px_rgba(0,0,0,0.28)] sm:flex-row sm:items-stretch sm:rounded-full">
                 <Field
                   icon={<Home className="h-[18px] w-[18px]" strokeWidth={1.75} />}
-                  label="Property type"
+                  label="Crop type"
                   value={agentType}
                   open={openField === "type"}
                   onToggle={() => setOpenField((v) => (v === "type" ? null : "type"))}
@@ -113,7 +114,7 @@ export function Discover() {
                 <div className="h-px bg-[#d9d0c6] sm:hidden" />
                 <Field
                   icon={<MapPin className="h-[18px] w-[18px]" strokeWidth={1.75} />}
-                  label="Price range"
+                  label="Delivery window"
                   value={taskRange}
                   open={openField === "range"}
                   onToggle={() => setOpenField((v) => (v === "range" ? null : "range"))}
@@ -152,11 +153,11 @@ export function Discover() {
 
             <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3">
               <a href="#pricing" className="group inline-flex items-center gap-2 text-[14px] font-medium text-white/85">
-                Buy a home
+                Buy a haul
                 <ChevronDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" strokeWidth={1.75} />
               </a>
               <a href="#workflow" className="group inline-flex items-center gap-2 text-[14px] font-medium text-white/85">
-                Rent a home
+                Rent a bay
                 <ChevronDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" strokeWidth={1.75} />
               </a>
             </div>
@@ -191,29 +192,29 @@ export function Discover() {
         </div>
 
         <p className="pointer-events-none absolute bottom-[38%] right-6 z-20 hidden max-w-[148px] text-right text-[11px] font-medium leading-snug text-white/80 lg:block">
-          Give us a call 1-888-498-9240 and that can set you up, or check our calling plan
+          Give us a call 1-888-498-9240 to set a Tatu or Konza drop, or check our corridor plan
         </p>
 
         <div className="relative z-30 bg-[#f4efe8] px-4 pb-5 pt-4 lg:bg-transparent lg:px-0 lg:pb-0 lg:pt-0">
           <article className="flex items-center gap-3 rounded-[22px] bg-[#ece7e0] p-2.5 shadow-[0_12px_28px_rgba(0,0,0,0.12)] lg:absolute lg:bottom-7 lg:left-7 lg:w-[min(42%-2rem,488px)]">
             <img
-              src="/images/researcher.png"
+              src="/images/harvest-gate.jpg"
               alt=""
               className="h-[78px] w-[86px] shrink-0 rounded-[16px] object-cover"
             />
             <div className="min-w-0 flex-1 py-1 pr-1">
               <div className="flex items-center gap-1.5 text-[12px] font-medium text-[#2a2624]">
                 <MapPin className="h-3.5 w-3.5 text-[#e66d1e]" strokeWidth={2} />
-                Jakarta Barat, Indonesia
+                Kiambu Gate, Kenya
               </div>
               <div className="mt-1.5 flex items-center gap-3 text-[11px] text-[#6b6560]">
                 <span className="inline-flex items-center gap-1">
                   <BedDouble className="h-3.5 w-3.5" strokeWidth={1.75} />
-                  4 bed
+                  4 crates
                 </span>
                 <span className="inline-flex items-center gap-1">
                   <Ruler className="h-3.5 w-3.5" strokeWidth={1.75} />
-                  10x20 m
+                  10×20 kg
                 </span>
               </div>
             </div>
@@ -393,7 +394,9 @@ function ServiceCard({
   className?: string;
 }) {
   return (
-    <div
+    <motion.div
+      whileHover={{ y: -6, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 320, damping: 24 }}
       className={cn(
         "rounded-[22px] border border-white/15 px-5 py-5 shadow-[0_16px_40px_rgba(0,0,0,0.28)]",
         className,
@@ -413,7 +416,7 @@ function ServiceCard({
       </div>
       <h3 className="text-[18px] font-semibold tracking-tight text-white">{title}</h3>
       <p className="mt-1.5 text-[12px] leading-relaxed text-white/50">{body}</p>
-    </div>
+    </motion.div>
   );
 }
 

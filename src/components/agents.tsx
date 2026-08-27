@@ -1,53 +1,48 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
-
-const BLOB = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com";
 
 const AGENTS = [
   {
-    name: "RESEARCHER",
-    image: "/images/researcher.png",
-    fallback: `${BLOB}/researcher-CvhqOuV6irGwBOnJoTGFlXdbyYBRjb.png`,
-    title: "Web & data research",
-    body: "Autonomously browses the web, extracts structured data, synthesizes reports from multiple sources with citations.",
+    name: "HARVEST",
+    image: "/images/harvest-gate.jpg",
+    title: "Farm-gate inventory",
+    body: "Logs harvest volume, crop category, and timestamp at the farm gate. Shelf-life decay curves prioritize perishable batches by urgency — not FIFO.",
     stats: [
-      { value: "2.4M", label: "tasks run" },
-      { value: "98.2%", label: "accuracy" },
+      { value: "2.4M", label: "crates logged" },
+      { value: "98.2%", label: "batch accuracy" },
     ],
   },
   {
-    name: "CODER",
-    image: "/images/coder.png",
-    fallback: `${BLOB}/coder-9bItvCegU6TXUqbX3tUXGBAtvkBkXp.png`,
-    title: "Code generation & review",
-    body: "Writes, refactors, and reviews code across 40+ languages. Runs tests, fixes bugs, opens pull requests automatically.",
+    name: "COLD CHAIN",
+    image: "/images/cold-chain-truck.jpg",
+    title: "GPS & telematics",
+    body: "Live location of transit fleets from rural farms to urban hubs. IoT probes alert drivers before cargo temperature drops into spoilage.",
     stats: [
-      { value: "1.1M", label: "PRs merged" },
-      { value: "3.2s", label: "avg response" },
+      { value: "1.1M", label: "km tracked" },
+      { value: "3.2s", label: "sensor lag" },
     ],
   },
   {
-    name: "ANALYST",
-    image: "/images/analyst.png",
-    fallback: `${BLOB}/analyst-Ysxnqg7Fpy2cfA56PiIttv1KximMhT.png`,
-    title: "Data analysis & insights",
-    body: "Connects to your databases, runs queries, visualizes trends, and surfaces anomalies before they become problems.",
+    name: "ROUTING",
+    image: "/images/urban-nodes.jpg",
+    title: "Dynamic timing",
+    body: "Optimal transit windows around Nairobi arterials and the northern corridor. Factors road condition, fuel, and strict urban delivery slots.",
     stats: [
-      { value: "880K", label: "reports" },
-      { value: "12x", label: "faster" },
+      { value: "880K", label: "routes" },
+      { value: "12x", label: "fewer delays" },
     ],
   },
   {
-    name: "EXECUTOR",
-    image: "/images/executor.png",
-    fallback: `${BLOB}/executor-o1q6509qMLXMtpBIGo49vcgOu34sI1.png`,
-    title: "Workflow automation",
-    body: "Takes actions across APIs: sends messages, creates calendar events, triggers webhooks, and manages third-party apps.",
+    name: "NODES",
+    image: "/images/food-factory.jpg",
+    title: "City & factory drop-off",
+    body: "Custom nodes for Tatu City and Konza City, plus factory floors and dark stores — consolidated drops for high-density residential nets.",
     stats: [
-      { value: "5.6M", label: "executions" },
-      { value: "99.9%", label: "uptime" },
+      { value: "5.6M", label: "drops" },
+      { value: "99.9%", label: "on-window" },
     ],
   },
 ];
@@ -79,17 +74,17 @@ export function Agents() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHeading
-            eyebrow="AGENT TYPES"
+            eyebrow="DELIVERY LAYERS"
             title={
               <>
-                Plug-and-play agents
+                Farm to city,
                 <br />
-                ready to deploy.
+                crate by crate.
               </>
             }
           />
           <p className="max-w-xs text-sm leading-relaxed text-white/45">
-            Start with a pre-built agent or compose your own from primitives. Every agent is versioned, testable, and observable.
+            Harvest logging, cold-chain telematics, corridor timing, and urban nodes for Tatu, Konza, factories, and dark stores.
           </p>
         </div>
 
@@ -111,15 +106,16 @@ export function Agents() {
                   willChange: "transform",
                 }}
               >
-                <div className="group relative min-h-[280px] cursor-pointer overflow-hidden rounded-2xl border border-white/[0.12] bg-[#141110] md:min-h-[320px]">
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 24 }}
+                  className="group relative min-h-[280px] cursor-pointer overflow-hidden rounded-2xl border border-white/[0.12] bg-[#141110] md:min-h-[320px]"
+                >
                   <div className="relative h-52 w-full pointer-events-none md:hidden">
                     <img
                       src={agent.image}
                       alt={agent.name}
                       className="absolute inset-0 h-full w-full object-cover object-center"
-                      onError={(event) => {
-                        event.currentTarget.src = agent.fallback;
-                      }}
                       style={{
                         maskImage: "linear-gradient(to bottom, black 0%, black 35%, transparent 85%)",
                         WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 35%, transparent 85%)",
@@ -131,9 +127,6 @@ export function Agents() {
                       src={agent.image}
                       alt={agent.name}
                       className="h-full w-full object-cover object-center"
-                      onError={(event) => {
-                        event.currentTarget.src = agent.fallback;
-                      }}
                     />
                     <div
                       className="absolute inset-0"
@@ -159,7 +152,7 @@ export function Agents() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           ))}

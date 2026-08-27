@@ -16,7 +16,7 @@ export function CtaFooter() {
     <>
       <section className="relative overflow-hidden border-t border-white/[0.08] px-6 py-32 md:px-12 lg:px-20">
         <img
-          src="/images/footer.png"
+          src="/images/produce-arc.jpg"
           alt=""
           aria-hidden
           className="pointer-events-none absolute bottom-0 left-0 w-full select-none object-cover object-bottom opacity-70"
@@ -38,12 +38,12 @@ export function CtaFooter() {
         />
         <div className="relative z-10 mx-auto max-w-2xl text-center">
           <h2 className="mb-6 font-display text-4xl font-light leading-[1.05] tracking-tight md:text-5xl lg:text-6xl">
-            Start building your
+            Start moving harvests
             <br />
-            agent workforce.
+            while they are still alive.
           </h2>
           <p className="mb-10 text-sm leading-relaxed text-white/45">
-            Join thousands of teams deploying AI agents that work around the clock, across every timezone.
+            Join farms, factories, and city hubs dispatching foodstuff on decay clocks — Tatu, Konza, Nairobi, and the northern corridor.
           </p>
           {joined ? (
             <p className="text-sm tracking-wide text-white/70">You&apos;re on the list. We&apos;ll be in touch.</p>
@@ -83,7 +83,7 @@ export function CtaFooter() {
           </div>
         </div>
         <div className="mx-auto mt-8 max-w-6xl border-t border-white/[0.06] pt-6">
-          <span className="text-xs text-white/20">© 2026 Agentic. All rights reserved.</span>
+          <span className="text-xs text-white/20">© 2026 Agentic. Farm to city. All rights reserved.</span>
         </div>
       </footer>
     </>

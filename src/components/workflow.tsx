@@ -4,27 +4,27 @@ import { GlassCard } from "@/components/glass-card";
 const STEPS = [
   {
     n: "01",
-    title: "Define",
-    body: "Describe your agent in plain language. Set objectives, tools, and boundaries.",
-    image: "/images/define.png",
+    title: "Harvest",
+    body: "Capture volume, crop, and timestamp at the farm gate before the crate leaves the soil.",
+    image: "/images/harvest-gate.jpg",
   },
   {
     n: "02",
-    title: "Compose",
-    body: "Chain agents together in the visual editor. Wire triggers, conditions, and outputs.",
-    image: "/images/compose.png",
+    title: "Route",
+    body: "Time the northern corridor and Nairobi arterials so the batch hits its urban window.",
+    image: "/images/urban-nodes.jpg",
   },
   {
     n: "03",
-    title: "Test",
-    body: "Run sandboxed simulations. Inspect every decision in the execution trace.",
-    image: "/images/test.png",
+    title: "Monitor",
+    body: "Watch GPS and cargo temperature. Alert the driver before the cold chain breaks.",
+    image: "/images/telematics.jpg",
   },
   {
     n: "04",
-    title: "Deploy",
-    body: "Push globally in one click. Agents auto-scale, self-heal, and report back.",
-    image: "/images/deploy.png",
+    title: "Drop",
+    body: "Consolidate into Tatu, Konza, factory docks, dark stores, or high-density housing.",
+    image: "/images/food-factory.jpg",
   },
 ];
 
@@ -37,7 +37,7 @@ export function Workflow() {
             eyebrow="WORKFLOW"
             title={
               <>
-                From idea to running agent
+                From gate to city dock
                 <br />
                 in four steps.
               </>

@@ -20,6 +20,7 @@ body {
   background: #0c0a0a;
   font-family: var(--font-display), "IBM Plex Sans", system-ui, sans-serif;
   overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .font-display {

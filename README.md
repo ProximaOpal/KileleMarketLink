@@ -2,7 +2,9 @@
 
 GitHub: [ProximaOpal/KileleMarketLink](https://github.com/ProximaOpal/KileleMarketLink)
 
-Landing page that keeps the **AGENTIC** layout — hero, sticky photo cards, buttons, type, and icons — and paints it with the **Frosted Authentication** color system: mesh gradient background, dark glass surfaces, white type, and orange/gold accents.
+This landing keeps the **AGENTIC** layout and frosted palette. Copy and photography are farm-to-city **foodstuff delivery**: harvest batches, cold-chain telematics, Nairobi corridor timing, and urban nodes for Tatu City, Konza City, factories, and dark stores.
+
+Install as a **PWA** from Chrome (Install prompt) for a home-screen dispatch board.
 
 As you scroll, **Terra** is its own full-viewport page: the original `terra-map.html` Live Earth Map (search, satellite/street/climate layers, amenities, locate).
 

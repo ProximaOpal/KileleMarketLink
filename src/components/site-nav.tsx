@@ -51,7 +51,7 @@ export function SiteNav() {
           </div>
           <div className="flex items-center gap-2">
             <Button variant="ghost" className="hidden md:inline-flex">
-              START BUILDING
+              START HAULING
             </Button>
             <button
               className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-white/[0.06] lg:hidden"
@@ -93,7 +93,7 @@ export function SiteNav() {
             ))}
             <div className="mt-1 px-2 pb-1">
               <Button variant="ghost" className="w-full py-2.5">
-                START BUILDING
+                START HAULING
               </Button>
             </div>
           </div>

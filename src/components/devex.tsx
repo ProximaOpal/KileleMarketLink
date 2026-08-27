@@ -3,44 +3,44 @@
 import { useState } from "react";
 
 const STEPS = [
-  { n: "01", title: "Install SDK", body: "One command to get started" },
-  { n: "02", title: "Define Agent", body: "TypeScript-first agent class" },
-  { n: "03", title: "Add Memory", body: "Persistent conversation context" },
-  { n: "04", title: "Deploy", body: "One command to production" },
+  { n: "01", title: "Connect gate", body: "One command to log harvest lots" },
+  { n: "02", title: "Bind fleet", body: "GPS + temperature on every reefer" },
+  { n: "03", title: "Set windows", body: "Tatu, Konza, factory intake slots" },
+  { n: "04", title: "Dispatch", body: "Decay-first routing to the city" },
 ];
 
 const TERMINALS = [
   [
-    { kind: "comment", text: "# Install the Agentic SDK" },
-    { kind: "cmd", text: "npm install @agentic/sdk" },
+    { kind: "comment", text: "# Connect a farm gate" },
+    { kind: "cmd", text: "npm install @agentic/farm" },
     { kind: "blank" },
-    { kind: "comment", text: "# Initialize your project" },
-    { kind: "cmd", text: "npx agentic init" },
+    { kind: "comment", text: "# Initialize harvest logging" },
+    { kind: "cmd", text: "npx agentic gate init" },
     { kind: "blank" },
-    { kind: "ok", text: "✓ Project initialized" },
-    { kind: "ok", text: "✓ Config file created" },
-    { kind: "ok", text: "✓ Ready to build" },
+    { kind: "ok", text: "✓ Gate registered — Kiambu" },
+    { kind: "ok", text: "✓ Decay clock armed" },
+    { kind: "ok", text: "✓ Ready to haul" },
   ],
   [
-    { kind: "comment", text: "# Define an agent" },
-    { kind: "cmd", text: "npx agentic create researcher" },
+    { kind: "comment", text: "# Bind a reefer" },
+    { kind: "cmd", text: "npx agentic fleet add nairobi-3" },
     { kind: "blank" },
-    { kind: "ok", text: "✓ Agent class generated" },
-    { kind: "ok", text: "✓ Tools wired" },
+    { kind: "ok", text: "✓ GPS telematics live" },
+    { kind: "ok", text: "✓ Probe streaming 3.8°C" },
   ],
   [
-    { kind: "comment", text: "# Attach persistent memory" },
-    { kind: "cmd", text: "npx agentic memory enable" },
+    { kind: "comment", text: "# Urban + factory nodes" },
+    { kind: "cmd", text: "npx agentic node add tatu konza" },
     { kind: "blank" },
-    { kind: "ok", text: "✓ Vector store connected" },
-    { kind: "ok", text: "✓ Session context on" },
+    { kind: "ok", text: "✓ Tatu dark store slotted" },
+    { kind: "ok", text: "✓ Konza factory intake on" },
   ],
   [
-    { kind: "comment", text: "# Ship it" },
-    { kind: "cmd", text: "npx agentic deploy --prod" },
+    { kind: "comment", text: "# Dispatch on decay, not FIFO" },
+    { kind: "cmd", text: "npx agentic haul --prod" },
     { kind: "blank" },
-    { kind: "ok", text: "✓ Regions: 12" },
-    { kind: "ok", text: "✓ Live at agentic.run" },
+    { kind: "ok", text: "✓ Corridor: Thika Rd bypass" },
+    { kind: "ok", text: "✓ Live at tatu.agentic.run" },
   ],
 ];
 
@@ -52,12 +52,12 @@ export function DevEx() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-16">
           <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[10px] uppercase tracking-widest text-white/40">
-            Developer Experience
+            Dispatch Experience
           </div>
           <h2 className="mt-5 font-display text-4xl font-light leading-[1.05] tracking-tight md:text-5xl">
-            Built for developers.
+            Built for farm gates.
             <br />
-            Loved by teams.
+            Trusted by city docks.
           </h2>
         </div>
         <div className="grid grid-cols-1 items-stretch gap-3 lg:grid-cols-3">

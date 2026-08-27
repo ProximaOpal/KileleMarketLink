@@ -6,27 +6,27 @@ const PLANS = [
   {
     name: "Sandbox",
     price: "Free",
-    note: "Start experimenting",
+    note: "Pilot a single farm gate",
     featured: false,
     cta: "GET STARTED",
-    items: ["5 agents", "1,000 tasks/mo", "Community support", "Basic traces"],
+    items: ["5 harvest lots", "1,000 km telematics", "Community support", "Basic traces"],
   },
   {
     name: "Builder",
     price: "$49",
     suffix: "/mo",
-    note: "For teams shipping fast",
+    note: "For corridors shipping daily",
     featured: true,
     cta: "GET STARTED",
-    items: ["50 agents", "100K tasks/mo", "Priority support", "Full traces + replay", "Custom tools", "REST API"],
+    items: ["50 lots", "100K km/mo", "Priority support", "Cold-chain replay", "Custom nodes", "REST API"],
   },
   {
     name: "Enterprise",
     price: "Custom",
-    note: "For orgs at scale",
+    note: "Factories and city grids",
     featured: false,
     cta: "CONTACT SALES",
-    items: ["Unlimited agents", "Unlimited tasks", "Dedicated infra", "SOC 2 / HIPAA", "SLA guarantees", "Custom contracts"],
+    items: ["Unlimited lots", "Unlimited km", "Dedicated infra", "SOC 2 / food safety", "SLA windows", "Tatu + Konza nodes"],
   },
 ];
 
@@ -40,9 +40,9 @@ export function Pricing() {
             eyebrow="PRICING"
             title={
               <>
-                Pay as your agents
+                Pay as your corridor
                 <br />
-                grow.
+                grows.
               </>
             }
           />

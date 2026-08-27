@@ -1,0 +1,26 @@
+{
+  "name": "Agentic — Farm to City",
+  "short_name": "Agentic",
+  "description": "Foodstuff delivery from Kenyan farms to cities and factories. Harvest batches, cold-chain telematics, and urban drop-offs for Tatu City and Konza.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0c0a0a",
+  "theme_color": "#0c0a0a",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

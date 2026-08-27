@@ -1,18 +1,14 @@
 "use client";
 
-const HERO_VIDEO =
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/agentic-hero-9yW3wnTNMfn2U6lsVhTTZSJFEvAoSj.mp4";
+import { motion } from "framer-motion";
 
 export function Hero() {
   return (
     <section id="top" className="relative isolate h-screen overflow-hidden">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+      <img
+        src="/images/hero-farm-city.jpg"
+        alt="Farm produce moving toward the city at sunrise"
         className="absolute inset-0 z-0 h-full w-full object-cover"
-        src={HERO_VIDEO}
       />
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
@@ -50,21 +46,26 @@ export function Hero() {
         }}
       />
       <div className="h-20" />
-      <div className="absolute inset-x-0 bottom-0 z-30 flex max-w-3xl flex-col px-6 pb-12 md:px-12">
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute inset-x-0 bottom-0 z-30 flex max-w-3xl flex-col px-6 pb-12 md:px-12"
+      >
         <h1 className="mb-10 font-display text-6xl font-light leading-[1.0] tracking-tight text-white sm:text-7xl md:text-8xl">
-          Build &
+          Farm food
           <br />
-          orchestrate AI
+          to cities &amp;
           <br />
-          agents while
+          factories —
           <br />
-          you sleep.
+          before it spoils.
         </h1>
         <div className="flex gap-8 sm:gap-12">
           {[
-            { value: "50M+", label: "Tasks" },
-            { value: "99.9%", label: "Uptime" },
-            { value: "180+", label: "Countries" },
+            { value: "12h", label: "Fresh window" },
+            { value: "99.4%", label: "Cold chain" },
+            { value: "Tatu+", label: "City nodes" },
           ].map((stat) => (
             <div key={stat.label}>
               <div className="font-display text-3xl font-light tracking-tight text-white sm:text-4xl">
@@ -76,7 +77,7 @@ export function Hero() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
