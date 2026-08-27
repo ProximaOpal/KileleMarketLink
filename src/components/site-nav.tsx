@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
+  { href: "#discover", label: "Discover" },
   { href: "#platform", label: "Platform" },
   { href: "#agents", label: "Agents" },
   { href: "#workflow", label: "Workflow" },
@@ -37,7 +38,7 @@ export function SiteNav() {
           <a href="#top" className="font-pixel text-[10px] tracking-[0.25em] text-white/80">
             AGENTIC
           </a>
-          <div className="hidden items-center gap-7 md:flex">
+          <div className="hidden items-center gap-5 lg:flex">
             {LINKS.map((link) => (
               <a
                 key={link.href}
@@ -53,7 +54,7 @@ export function SiteNav() {
               START BUILDING
             </Button>
             <button
-              className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-white/[0.06] md:hidden"
+              className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-white/[0.06] lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((v) => !v)}
             >
@@ -73,8 +74,8 @@ export function SiteNav() {
           </div>
         </nav>
         <div
-          className="mt-2 overflow-hidden transition-all duration-300 ease-in-out md:hidden"
-          style={{ maxHeight: open ? 320 : 0, opacity: open ? 1 : 0 }}
+          className="mt-2 overflow-hidden transition-all duration-300 ease-in-out lg:hidden"
+          style={{ maxHeight: open ? 380 : 0, opacity: open ? 1 : 0 }}
         >
           <div
             className="flex flex-col rounded-2xl border border-white/[0.12] bg-[rgba(16,14,14,0.55)] px-2 py-2"

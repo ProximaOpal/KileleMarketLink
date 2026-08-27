@@ -1,6 +1,7 @@
 import { Agents } from "@/components/agents";
 import { CtaFooter } from "@/components/cta-footer";
 import { DevEx } from "@/components/devex";
+import { Discover } from "@/components/discover";
 import { Hero } from "@/components/hero";
 import { Integrations } from "@/components/integrations";
 import { IntroSplash } from "@/components/intro-splash";
@@ -20,6 +21,7 @@ export default function Home() {
       <IntroSplash />
       <SiteNav />
       <Hero />
+      <Discover />
       <Platform />
       <Agents />
       <Workflow />

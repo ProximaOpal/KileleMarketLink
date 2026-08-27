@@ -91,3 +91,47 @@ body {
   }
 }
 
+/* Discover page — stepped cream floor with inner fillet (reference geometry) */
+.discover-floor {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 132px;
+  background: #f4efe8;
+}
+
+.discover-floor-rise {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: min(46%, 540px);
+  height: 228px;
+  background: #f4efe8;
+  border-top-right-radius: 44px;
+}
+
+.discover-floor-fillet {
+  position: absolute;
+  bottom: 132px;
+  left: min(46%, 540px);
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+  border-radius: 50%;
+  box-shadow: -44px 44px 0 0 #f4efe8;
+}
+
+@media (max-width: 1023px) {
+  .discover-floor {
+    height: auto;
+    top: auto;
+    background: #f4efe8;
+  }
+
+  .discover-floor-rise,
+  .discover-floor-fillet {
+    display: none;
+  }
+}
+
