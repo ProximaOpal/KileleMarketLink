@@ -2,11 +2,13 @@
 
 GitHub: [ProximaOpal/KileleMarketLink](https://github.com/ProximaOpal/KileleMarketLink)
 
-Green-and-white **luminous lime** theme: off-white surfaces, jagged neon-green-to-cyan splashes, and black type. The **AGENTIC** layout stays: harvest batches, cold-chain telematics, Nairobi corridor timing, and urban nodes for Tatu City, Konza City, factories, and dark stores.
+The site opens on a **KILELE Market Link** intro: teaser type, Enter, then the wordmark, with a full-screen camera-move video behind the paper/green wash. After Enter, it fades into the main app (harvest batches, cold-chain telematics, Nairobi corridor timing, Tatu City, Konza City, factories, and dark stores).
+
+Replace `public/videos/landing.mp4` with your PixVerse export (`PixVerse_V6_Image_Text_540P_CAMERA_MOVEMENTS__.mp4`) to use that exact clip on the landing.
 
 Install as a **PWA** from Chrome (Install prompt) for a home-screen dispatch board.
 
-As you scroll, **Terra** is its own full-viewport page, then **Global** (`#global`) plays a full-screen countrywide-to-globe video behind “We are available countrywide and also Going Global”. Replace `public/videos/countrywide.mp4` with your PixVerse export to use that exact clip.
+As you scroll, **Terra** is its own full-viewport page, then **Global** (`#global`) plays a full-screen countrywide-to-globe video behind “We are available countrywide and also Going Global”. Replace `public/videos/countrywide.mp4` for that section.
 
 ## Run locally
 
