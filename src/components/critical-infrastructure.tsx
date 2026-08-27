@@ -4,7 +4,7 @@ export function CriticalInfrastructure() {
       <iframe
         src="/critical-infrastructure.html"
         title="Critical Infrastructure — Holographic Wireframe"
-        className="absolute inset-0 h-full w-full border-0"
+        className="absolute inset-0 h-full w-full border-0 bg-[#010509]"
       />
     </section>
   );

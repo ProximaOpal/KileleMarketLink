@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useLocalVideo } from "@/hooks/use-local-video";
 import { clearLocalVideo, formatBytes, GLOBAL_VIDEO_KEY, saveLocalVideo } from "@/lib/local-video";
@@ -111,7 +112,11 @@ export function SettingsPanel() {
       {error ? <p className="mt-4 text-sm text-[#8b2318]">{error}</p> : null}
       {saved ? (
         <p className="mt-4 text-sm text-[#0a6b58]">
-          Saved. Open <a className="underline underline-offset-4" href="/#global">Global</a> to play it full-screen.
+          Saved. Open{" "}
+          <Link className="underline underline-offset-4" href="/#global">
+            Global
+          </Link>{" "}
+          to play it full-screen.
         </p>
       ) : null}
 
