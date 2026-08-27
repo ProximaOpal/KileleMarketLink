@@ -140,6 +140,7 @@ export function FarmerRateDeck() {
               <img
                 src={farmer.portrait}
                 alt={farmer.name}
+                draggable={false}
                 className="relative z-10 mx-auto h-full w-auto max-w-[94%] object-contain object-bottom drop-shadow-[0_18px_28px_rgba(0,0,0,0.22)]"
               />
               <div className="absolute left-4 top-1/2 z-20 flex -translate-y-1/2 flex-col gap-2">
@@ -216,6 +217,7 @@ export function FarmerRateDeck() {
                       <img
                         src={mate.avatar}
                         alt={mate.name}
+                        draggable={false}
                         className={cn(
                           "h-12 w-12 rounded-[10px] object-cover",
                           t === i && "ring-2 ring-black/70",

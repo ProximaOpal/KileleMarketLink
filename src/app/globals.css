@@ -80,9 +80,15 @@ body {
 .farmer-scroller {
   scrollbar-width: none;
   -ms-overflow-style: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .farmer-scroller::-webkit-scrollbar {
   display: none;
+}
+.farmer-scroller img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 @keyframes splashHide {
