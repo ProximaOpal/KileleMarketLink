@@ -1,18 +1,22 @@
 "use client";
 
+import { useLocalVideo } from "@/hooks/use-local-video";
+
 export function GlobalReach() {
+  const { src } = useLocalVideo();
+
   return (
     <section id="global" className="relative h-[100svh] min-h-[720px] overflow-hidden bg-black">
       <video
+        key={src}
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         loop
         playsInline
         poster="/images/global-kenya-aerial.jpg"
-      >
-        <source src="/videos/countrywide.mp4" type="video/mp4" />
-      </video>
+        src={src}
+      />
       <div
         className="pointer-events-none absolute inset-0"
         style={{

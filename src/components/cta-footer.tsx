@@ -69,6 +69,7 @@ export function CtaFooter() {
               ["#global", "Global"],
               ["#live", "Live"],
               ["#pricing", "Pricing"],
+              ["/settings", "Settings"],
             ].map(([href, label]) => (
               <a key={href} href={href} className="text-xs tracking-widest text-[#0a0a0a]/40 transition-colors hover:text-[#0a0a0a]">
                 {label}

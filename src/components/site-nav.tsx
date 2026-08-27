@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +17,8 @@ const LINKS = [
 ];
 
 export function SiteNav() {
+  const pathname = usePathname();
+  const home = pathname === "/" ? "" : "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -27,7 +31,7 @@ export function SiteNav() {
 
   return (
     <div className="pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-      <div className="pointer-events-auto w-full max-w-3xl">
+      <div className="pointer-events-auto w-full max-w-4xl">
         <nav
           className={cn(
             "flex items-center justify-between rounded-2xl border border-[#0a0a0a]/12 px-5 py-3",
@@ -36,19 +40,28 @@ export function SiteNav() {
           )}
           style={{ backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
         >
-          <a href="#top" className="font-pixel text-[10px] tracking-[0.25em] text-[#0a0a0a]">
+          <Link href={pathname === "/" ? "#top" : "/"} className="font-pixel text-[10px] tracking-[0.25em] text-[#0a0a0a]">
             AGENTIC
-          </a>
-          <div className="hidden items-center gap-5 lg:flex">
+          </Link>
+          <div className="hidden items-center gap-4 lg:flex">
             {LINKS.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={`${home}${link.href}`}
                 className="text-[11px] tracking-wide text-[#0a0a0a]/55 transition-colors duration-200 hover:text-[#0a0a0a]"
               >
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/settings"
+              className={cn(
+                "text-[11px] tracking-wide transition-colors duration-200",
+                pathname === "/settings" ? "text-[#0a0a0a]" : "text-[#0a0a0a]/55 hover:text-[#0a0a0a]",
+              )}
+            >
+              Settings
+            </Link>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="ghost" className="hidden md:inline-flex">
@@ -76,7 +89,7 @@ export function SiteNav() {
         </nav>
         <div
           className="mt-2 overflow-hidden transition-all duration-300 ease-in-out lg:hidden"
-          style={{ maxHeight: open ? 380 : 0, opacity: open ? 1 : 0 }}
+          style={{ maxHeight: open ? 440 : 0, opacity: open ? 1 : 0 }}
         >
           <div
             className="flex flex-col rounded-2xl border border-[#0a0a0a]/12 bg-white/90 px-2 py-2"
@@ -85,13 +98,20 @@ export function SiteNav() {
             {LINKS.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={`${home}${link.href}`}
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-4 py-3 text-sm tracking-wide text-[#0a0a0a]/60 transition-colors hover:bg-[#0a0a0a]/5 hover:text-[#0a0a0a]"
               >
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/settings"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-4 py-3 text-sm tracking-wide text-[#0a0a0a]/60 transition-colors hover:bg-[#0a0a0a]/5 hover:text-[#0a0a0a]"
+            >
+              Settings
+            </Link>
             <div className="mt-1 px-2 pb-1">
               <Button variant="ghost" className="w-full py-2.5">
                 START HAULING
