@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 const STEPS = [
   { n: "01", title: "Install SDK", body: "One command to get started" },
