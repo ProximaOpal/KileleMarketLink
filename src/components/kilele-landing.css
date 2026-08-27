@@ -224,8 +224,8 @@
   letter-spacing: -0.01em;
   margin: 0;
   text-align: center;
-  opacity: 0;
-  animation: kmlFadeUp 1s ease forwards 0.2s;
+  opacity: 1;
+  animation: kmlFadeUp 1s ease both 0.2s;
 }
 
 .kml-enter-btn {
@@ -240,8 +240,8 @@
   padding: 16px 42px;
   border-radius: 999px;
   cursor: pointer;
-  opacity: 0;
-  animation: kmlFadeUp 1s ease forwards 0.5s;
+  opacity: 1;
+  animation: kmlFadeUp 1s ease both 0.5s;
   transition: color 0.35s ease;
   overflow: hidden;
   z-index: 1;
@@ -285,5 +285,12 @@
   .kml-shape-c,
   .kml-shape-d {
     transition-duration: 0.4s !important;
+  }
+
+  .kml-gate-title,
+  .kml-enter-btn {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

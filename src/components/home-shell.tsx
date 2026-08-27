@@ -23,15 +23,11 @@ function deepLinked() {
 }
 
 export function HomeShell() {
-  const [mode, setMode] = useState<"boot" | "intro" | "app">("boot");
+  const [mode, setMode] = useState<"intro" | "app">("intro");
 
   useEffect(() => {
-    setMode(deepLinked() ? "app" : "intro");
+    if (deepLinked()) setMode("app");
   }, []);
-
-  if (mode === "boot") {
-    return <div className="min-h-screen bg-[#F4F6F2]" />;
-  }
 
   if (mode === "intro") {
     return <KileleLanding onComplete={() => setMode("app")} />;

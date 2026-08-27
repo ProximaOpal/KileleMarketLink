@@ -225,28 +225,63 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
   function handleEnter() {
     if (entered) return;
     setEntered(true);
-    ensureCtx();
-    playClick(700, 0.09);
     setGateHidden(true);
+
+    try {
+      ensureCtx();
+      playClick(700, 0.09);
+    } catch {
+      /* visuals still run if audio is blocked */
+    }
 
     const reduced = reducedMotion();
     setPhase("kml-shapes-in");
-    playWhoosh(0, 0.3);
-    playWhoosh(0.15, 0.2);
-    playWhoosh(0.3, 0.16);
+    try {
+      playWhoosh(0, 0.3);
+      playWhoosh(0.15, 0.2);
+      playWhoosh(0.3, 0.16);
+    } catch {
+      /* ignore */
+    }
 
-    window.setTimeout(() => playSwell(), reduced ? 100 : 600);
+    window.setTimeout(() => {
+      try {
+        playSwell();
+      } catch {
+        /* ignore */
+      }
+    }, reduced ? 100 : 600);
     window.setTimeout(() => {
       setPhase("kml-shapes-in kml-word-in");
-      playChime();
+      try {
+        playChime();
+      } catch {
+        /* ignore */
+      }
     }, reduced ? 200 : 1250);
     window.setTimeout(() => setPhase("kml-shapes-in kml-word-in kml-sub-in"), reduced ? 300 : 1750);
     window.setTimeout(() => {
       setPhase("kml-shapes-in kml-word-in kml-sub-in kml-line-in kml-text-in");
-      startAmbient();
+      try {
+        startAmbient();
+      } catch {
+        /* ignore */
+      }
     }, reduced ? 400 : 2100);
     window.setTimeout(finish, reduced ? 1100 : 3800);
   }
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const tag = (event.target as HTMLElement | null)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      event.preventDefault();
+      handleEnter();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [entered]);
 
   function toggleSound() {
     const next = !soundOn;
@@ -340,7 +375,7 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
 
       <div className={`kml-gate${gateHidden ? " kml-gate-hide" : ""}`}>
         <h2 className="kml-gate-title">Kilele Market Link</h2>
-        <button type="button" className="kml-enter-btn" onClick={handleEnter}>
+        <button type="button" className="kml-enter-btn" autoFocus onClick={handleEnter}>
           Enter
         </button>
       </div>
