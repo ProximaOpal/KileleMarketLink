@@ -16,8 +16,8 @@ import { Workflow } from "@/components/workflow";
 
 export default function Home() {
   return (
-    <div className="relative isolate min-h-screen overflow-x-hidden text-[#14261a]">
-      <div className="paper-cut-backdrop" aria-hidden />
+    <div className="relative isolate min-h-screen overflow-x-hidden text-[#0a0a0a]">
+      <div className="luminous-backdrop" aria-hidden />
       <IntroSplash />
       <SiteNav />
       <Hero />

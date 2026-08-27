@@ -2,7 +2,7 @@
 
 GitHub: [ProximaOpal/KileleMarketLink](https://github.com/ProximaOpal/KileleMarketLink)
 
-Green-and-white **paper-cut** theme with generated leaf photography. The **AGENTIC** layout stays: harvest batches, cold-chain telematics, Nairobi corridor timing, and urban nodes for Tatu City, Konza City, factories, and dark stores.
+Green-and-white **luminous lime** theme: off-white surfaces, jagged neon-green-to-cyan splashes, and black type. The **AGENTIC** layout stays: harvest batches, cold-chain telematics, Nairobi corridor timing, and urban nodes for Tatu City, Konza City, factories, and dark stores.
 
 Install as a **PWA** from Chrome (Install prompt) for a home-screen dispatch board.
 
@@ -44,6 +44,6 @@ No env secrets are required. After the first deploy, commits to `main` auto-depl
 
 | From | Used for |
 | --- | --- |
-| Green paper-cut templates | Layered forest / lime / white shapes, leaf photography, light surfaces |
+| White + luminous green editorial | Jagged lime-to-cyan splashes, off-white canvas, black type, pill CTAs |
 | AGENTIC landing | Geometry, nav, hero, sticky agent cards, photo stacks, workflow, pricing, icons |
 | Terra map HTML | Full-viewport Live Earth Map as you scroll |

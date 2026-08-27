@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #f4f8f1;
-  --foreground: #14261a;
-  --accent: #2f7a3e;
-  --lime: #c6e86a;
-  --forest: #163a28;
-  --leaf: #4c9a4e;
+  --background: #f3f3f1;
+  --foreground: #0a0a0a;
+  --accent: #c8f542;
+  --lime: #c8f542;
+  --cyan: #2ee6c8;
+  --ink: #0a0a0a;
 }
 
 html {
@@ -18,7 +18,7 @@ html {
 
 body {
   color: var(--foreground);
-  background: #f4f8f1;
+  background: #f3f3f1;
   font-family: var(--font-display), "IBM Plex Sans", system-ui, sans-serif;
   overflow-x: hidden;
   padding-bottom: env(safe-area-inset-bottom);
@@ -32,13 +32,13 @@ body {
   font-family: var(--font-pixel), ui-monospace, monospace;
 }
 
-.paper-cut-backdrop {
+.luminous-backdrop {
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(244, 248, 241, 0.72) 0%, rgba(244, 248, 241, 0.28) 42%, rgba(244, 248, 241, 0.55) 100%),
-    url("/images/paper-cut-bg.png") center / cover no-repeat;
+    linear-gradient(180deg, rgba(243, 243, 241, 0.82) 0%, rgba(243, 243, 241, 0.35) 48%, rgba(243, 243, 241, 0.7) 100%),
+    url("/images/luminous-splash.png") center / cover no-repeat;
 }
 
 @keyframes fadeInUp {

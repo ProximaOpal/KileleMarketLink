@@ -9,10 +9,10 @@ export function PixelMark() {
       style={{ imageRendering: "pixelated" }}
     >
       <rect width="40" height="40" fill="none" />
-      <rect x="4" y="16" width="8" height="8" fill="#163a28" />
-      <rect x="16" y="8" width="8" height="8" fill="#c6e86a" />
-      <rect x="16" y="24" width="8" height="8" fill="#4c9a4e" />
-      <rect x="28" y="16" width="8" height="8" fill="#2f7a3e" />
+      <rect x="4" y="16" width="8" height="8" fill="#0a0a0a" />
+      <rect x="16" y="8" width="8" height="8" fill="#c8f542" />
+      <rect x="16" y="24" width="8" height="8" fill="#2ee6c8" />
+      <rect x="28" y="16" width="8" height="8" fill="#c8f542" />
     </svg>
   );
 }

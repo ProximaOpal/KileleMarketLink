@@ -30,7 +30,7 @@ const STEPS = [
 
 export function Workflow() {
   return (
-    <section id="workflow" className="relative z-10 border-t border-[#163a28]/10 px-6 py-32 md:px-12 lg:px-20">
+    <section id="workflow" className="relative z-10 border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16">
           <SectionHeading
@@ -59,11 +59,11 @@ export function Workflow() {
                 />
               </div>
               <div className="relative z-10 p-7">
-                <span className="block font-pixel text-[11px] tracking-widest text-[#163a28]/30">{step.n}</span>
+                <span className="block font-pixel text-[11px] tracking-widest text-[#0a0a0a]/30">{step.n}</span>
               </div>
               <div className="relative z-10 mt-auto px-7 pb-7 pt-16">
                 <h3 className="mb-3 text-2xl font-light">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-[#14261a]/55">{step.body}</p>
+                <p className="text-sm leading-relaxed text-[#0a0a0a]/55">{step.body}</p>
               </div>
             </GlassCard>
           ))}

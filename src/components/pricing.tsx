@@ -32,7 +32,7 @@ const PLANS = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="border-t border-[#163a28]/10 px-6 py-32 md:px-12 lg:px-20">
+    <section id="pricing" className="border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex flex-col items-center text-center">
           <SectionHeading
@@ -51,34 +51,34 @@ export function Pricing() {
           {PLANS.map((plan) => (
             <GlassCard
               key={plan.name}
-              className={`flex flex-col p-8 ${plan.featured ? "border-[#163a28]/25 bg-[#163a28] text-white" : ""}`}
+              className={`flex flex-col p-8 ${plan.featured ? "border-black/20 bg-[#c8f542] text-black" : ""}`}
             >
               <div className="mb-8">
-                <div className={`mb-4 font-pixel text-[11px] tracking-widest ${plan.featured ? "text-white/60" : "text-[#163a28]/45"}`}>
+                <div className={`mb-4 font-pixel text-[11px] tracking-widest ${plan.featured ? "text-black/55" : "text-[#0a0a0a]/45"}`}>
                   {plan.name}
                 </div>
                 <div className="mb-1 flex items-baseline gap-1">
                   <span className="text-4xl font-light">{plan.price}</span>
                   {plan.suffix ? (
-                    <span className={`text-sm ${plan.featured ? "text-white/55" : "text-[#163a28]/45"}`}>{plan.suffix}</span>
+                    <span className={`text-sm ${plan.featured ? "text-black/55" : "text-[#0a0a0a]/45"}`}>{plan.suffix}</span>
                   ) : null}
                 </div>
-                <p className={`text-xs tracking-wide ${plan.featured ? "text-white/55" : "text-[#163a28]/45"}`}>{plan.note}</p>
+                <p className={`text-xs tracking-wide ${plan.featured ? "text-black/55" : "text-[#0a0a0a]/45"}`}>{plan.note}</p>
               </div>
               <ul className="mb-8 flex-1 space-y-3">
                 {plan.items.map((item) => (
                   <li
                     key={item}
-                    className={`flex items-center gap-3 text-sm ${plan.featured ? "text-white/80" : "text-[#14261a]/65"}`}
+                    className={`flex items-center gap-3 text-sm ${plan.featured ? "text-black/80" : "text-[#0a0a0a]/65"}`}
                   >
-                    <div className={`h-1 w-1 shrink-0 rounded-full ${plan.featured ? "bg-[#c6e86a]" : "bg-[#2f7a3e]"}`} />
+                    <div className={`h-1 w-1 shrink-0 rounded-full ${plan.featured ? "bg-black" : "bg-[#c8f542]"}`} />
                     {item}
                   </li>
                 ))}
               </ul>
               <Button
                 variant={plan.featured ? "ghost" : "primary"}
-                className={`w-full py-3 text-sm ${plan.featured ? "border-white/30 text-white hover:bg-white/10" : ""}`}
+                className={`w-full py-3 text-sm ${plan.featured ? "border-black bg-black text-[#c8f542] hover:bg-black hover:text-[#c8f542]" : ""}`}
               >
                 {plan.cta}
               </Button>

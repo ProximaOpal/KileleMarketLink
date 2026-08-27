@@ -70,7 +70,7 @@ export function Agents() {
   }, []);
 
   return (
-    <section id="agents" className="relative z-10 border-t border-[#163a28]/10 px-6 py-32 md:px-12 lg:px-20">
+    <section id="agents" className="relative z-10 border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHeading
@@ -83,7 +83,7 @@ export function Agents() {
               </>
             }
           />
-          <p className="max-w-xs text-sm leading-relaxed text-[#14261a]/55">
+          <p className="max-w-xs text-sm leading-relaxed text-[#0a0a0a]/55">
             Harvest logging, cold-chain telematics, corridor timing, and urban nodes for Tatu, Konza, factories, and dark stores.
           </p>
         </div>
@@ -109,7 +109,7 @@ export function Agents() {
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 320, damping: 24 }}
-                  className="group relative min-h-[280px] cursor-pointer overflow-hidden rounded-2xl border border-[#163a28]/12 bg-white md:min-h-[320px]"
+                  className="group relative min-h-[280px] cursor-pointer overflow-hidden rounded-2xl border border-[#0a0a0a]/12 bg-white md:min-h-[320px]"
                 >
                   <div className="relative h-52 w-full pointer-events-none md:hidden">
                     <img
@@ -136,18 +136,18 @@ export function Agents() {
                   <div className="relative z-10 p-8">
                     <div className="md:max-w-[60%]">
                       <div className="mb-6 flex items-start justify-between">
-                        <span className="inline-flex items-center rounded-full bg-[#163a28]/8 px-3 py-1 text-[11px] tracking-widest text-[#163a28]/60">
+                        <span className="inline-flex items-center rounded-full bg-[#0a0a0a]/8 px-3 py-1 text-[11px] tracking-widest text-[#0a0a0a]/60">
                           {agent.name}
                         </span>
                       </div>
                       <h3 className="mb-3 text-xl font-light">{agent.title}</h3>
-                      <p className="mb-8 text-sm leading-relaxed text-[#14261a]/55">{agent.body}</p>
+                      <p className="mb-8 text-sm leading-relaxed text-[#0a0a0a]/55">{agent.body}</p>
                     </div>
-                    <div className="flex gap-8 border-t border-[#163a28]/10 pt-6">
+                    <div className="flex gap-8 border-t border-[#0a0a0a]/10 pt-6">
                       {agent.stats.map((stat) => (
                         <div key={stat.label}>
                           <div className="text-2xl font-light">{stat.value}</div>
-                          <div className="mt-0.5 text-[11px] tracking-widest text-[#163a28]/45">{stat.label}</div>
+                          <div className="mt-0.5 text-[11px] tracking-widest text-[#0a0a0a]/45">{stat.label}</div>
                         </div>
                       ))}
                     </div>

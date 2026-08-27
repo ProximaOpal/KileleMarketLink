@@ -39,11 +39,11 @@ const FARMERS: Farmer[] = [
     lastHaul: "Last haul · 420kg kale · Tatu",
     portrait: "/images/farmers/wanjiku.png",
     avatar: "/images/farmers/avatar-1.png",
-    pageBg: "#eef6e6",
-    aura: "#5a8f4a",
+    pageBg: "#f3f3f1",
+    aura: "#c8f542",
     ink: "#14110f",
     muted: "#6b6560",
-    accent: "#2f7a3e",
+    accent: "#c8f542",
     bar: "#111111",
   },
   {
@@ -112,7 +112,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
   return (
     <div
       id={embedded ? "farmers" : undefined}
-      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[#163a28] text-black"
+      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[#c8f542] text-black"
     >
       <div
         ref={scroller}
@@ -273,8 +273,8 @@ function Stars({ value, onChange }: { value: number; onChange: (n: number) => vo
             <Star
               className="h-[18px] w-[18px]"
               strokeWidth={1.6}
-                  fill={filled ? "#2f7a3e" : "transparent"}
-                  color="#2f7a3e"
+                  fill={filled ? "#c8f542" : "transparent"}
+                  color="#c8f542"
             />
           </button>
         );

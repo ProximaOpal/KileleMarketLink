@@ -48,10 +48,10 @@ export function DevEx() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="devex" className="border-t border-[#163a28]/10 px-6 py-32 md:px-12 lg:px-20">
+    <section id="devex" className="border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16">
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#163a28]/15 bg-white/60 px-3 py-1.5 text-[10px] uppercase tracking-widest text-[#163a28]/50">
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#0a0a0a]/15 bg-white/60 px-3 py-1.5 text-[10px] uppercase tracking-widest text-[#0a0a0a]/50">
             Dispatch Experience
           </div>
           <h2 className="mt-5 font-display text-4xl font-light leading-[1.05] tracking-tight md:text-5xl">
@@ -68,31 +68,31 @@ export function DevEx() {
                 onClick={() => setActive(i)}
                 className="group flex-1 rounded-2xl border p-6 text-left transition-all duration-200"
                 style={{
-                  background: i === active ? "rgba(22,58,40,0.08)" : "rgba(255,255,255,0.55)",
-                  borderColor: i === active ? "rgba(22,58,40,0.22)" : "rgba(22,58,40,0.10)",
+                  background: i === active ? "rgba(10,10,10,0.08)" : "rgba(255,255,255,0.55)",
+                  borderColor: i === active ? "rgba(10,10,10,0.22)" : "rgba(10,10,10,0.10)",
                 }}
               >
                 <div className="flex items-start gap-4">
                   <div
                     className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-light"
                     style={{
-                      background: i === active ? "rgba(22,58,40,0.14)" : "rgba(22,58,40,0.06)",
-                      color: i === active ? "#163a28" : "rgba(22,58,40,0.45)",
+                      background: i === active ? "rgba(10,10,10,0.14)" : "rgba(10,10,10,0.06)",
+                      color: i === active ? "#0a0a0a" : "rgba(10,10,10,0.45)",
                     }}
                   >
                     {step.n}
                   </div>
                   <div className="min-w-0">
-                    <p className={cnLite(i === active ? "text-[#14261a]" : "text-[#163a28]/55")}>{step.title}</p>
-                    <p className="mt-0.5 text-xs text-[#163a28]/40">{step.body}</p>
+                    <p className={cnLite(i === active ? "text-[#0a0a0a]" : "text-[#0a0a0a]/55")}>{step.title}</p>
+                    <p className="mt-0.5 text-xs text-[#0a0a0a]/40">{step.body}</p>
                   </div>
                 </div>
               </button>
             ))}
           </div>
           <div
-            className="flex min-h-[360px] flex-col rounded-2xl border border-[#163a28]/12 bg-[#163a28] p-8 text-white lg:col-span-2"
-            style={{ background: "#163a28" }}
+            className="flex min-h-[360px] flex-col rounded-2xl border border-[#0a0a0a]/12 bg-[#0a0a0a] p-8 text-white lg:col-span-2"
+            style={{ background: "#0a0a0a" }}
           >
             <div className="mb-5 flex shrink-0 items-center justify-between">
               <div className="text-[10px] uppercase tracking-widest text-white/50">terminal</div>
@@ -106,7 +106,7 @@ export function DevEx() {
                 ))}
               </div>
             </div>
-            <div className="flex-1 overflow-hidden rounded-xl border border-white/10 bg-[#081c15] p-6">
+            <div className="flex-1 overflow-hidden rounded-xl border border-white/10 bg-[#0a0a0a] p-6">
               <div className="font-mono text-[12px] leading-6">
                 {TERMINALS[active].map((line, i) => {
                   if (line.kind === "blank") return <div key={i} className="h-3" />;
@@ -119,7 +119,7 @@ export function DevEx() {
                   if (line.kind === "cmd")
                     return (
                       <div key={i}>
-                        <span className="text-[#c6e86a]">$ </span>
+                        <span className="text-[#c8f542]">$ </span>
                         <span className="text-white">{line.text}</span>
                       </div>
                     );

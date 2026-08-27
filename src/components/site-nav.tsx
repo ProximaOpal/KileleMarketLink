@@ -29,13 +29,13 @@ export function SiteNav() {
       <div className="pointer-events-auto w-full max-w-3xl">
         <nav
           className={cn(
-            "flex items-center justify-between rounded-2xl border border-[#163a28]/12 px-5 py-3",
-            "bg-white/70 shadow-[0_12px_32px_rgba(22,58,40,0.12),0_2px_8px_rgba(22,58,40,0.06)]",
+            "flex items-center justify-between rounded-2xl border border-[#0a0a0a]/12 px-5 py-3",
+            "bg-white/70 shadow-[0_12px_32px_rgba(10,10,10,0.12),0_2px_8px_rgba(10,10,10,0.06)]",
             scrolled && "bg-white/88",
           )}
           style={{ backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
         >
-          <a href="#top" className="font-pixel text-[10px] tracking-[0.25em] text-[#163a28]">
+          <a href="#top" className="font-pixel text-[10px] tracking-[0.25em] text-[#0a0a0a]">
             AGENTIC
           </a>
           <div className="hidden items-center gap-5 lg:flex">
@@ -43,7 +43,7 @@ export function SiteNav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[11px] tracking-wide text-[#163a28]/55 transition-colors duration-200 hover:text-[#163a28]"
+                className="text-[11px] tracking-wide text-[#0a0a0a]/55 transition-colors duration-200 hover:text-[#0a0a0a]"
               >
                 {link.label}
               </a>
@@ -54,20 +54,20 @@ export function SiteNav() {
               START HAULING
             </Button>
             <button
-              className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-[#163a28]/[0.06] lg:hidden"
+              className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-[#0a0a0a]/[0.06] lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((v) => !v)}
             >
               <span
-                className="block h-px bg-[#163a28]/70 transition-all duration-300 origin-center"
+                className="block h-px bg-[#0a0a0a]/70 transition-all duration-300 origin-center"
                 style={{ width: 18, transform: open ? "translateY(6px) rotate(45deg)" : "none" }}
               />
               <span
-                className="block h-px bg-[#163a28]/70 transition-all duration-300"
+                className="block h-px bg-[#0a0a0a]/70 transition-all duration-300"
                 style={{ width: 18, opacity: open ? 0 : 1 }}
               />
               <span
-                className="block h-px bg-[#163a28]/70 transition-all duration-300 origin-center"
+                className="block h-px bg-[#0a0a0a]/70 transition-all duration-300 origin-center"
                 style={{ width: 18, transform: open ? "translateY(-6px) rotate(-45deg)" : "none" }}
               />
             </button>
@@ -78,7 +78,7 @@ export function SiteNav() {
           style={{ maxHeight: open ? 380 : 0, opacity: open ? 1 : 0 }}
         >
           <div
-            className="flex flex-col rounded-2xl border border-[#163a28]/12 bg-white/90 px-2 py-2"
+            className="flex flex-col rounded-2xl border border-[#0a0a0a]/12 bg-white/90 px-2 py-2"
             style={{ backdropFilter: "blur(16px)" }}
           >
             {LINKS.map((link) => (
@@ -86,7 +86,7 @@ export function SiteNav() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-4 py-3 text-sm tracking-wide text-[#163a28]/60 transition-colors hover:bg-[#163a28]/5 hover:text-[#163a28]"
+                className="rounded-xl px-4 py-3 text-sm tracking-wide text-[#0a0a0a]/60 transition-colors hover:bg-[#0a0a0a]/5 hover:text-[#0a0a0a]"
               >
                 {link.label}
               </a>
