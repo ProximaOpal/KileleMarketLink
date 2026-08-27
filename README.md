@@ -6,7 +6,7 @@ Green-and-white **luminous lime** theme: off-white surfaces, jagged neon-green-t
 
 Install as a **PWA** from Chrome (Install prompt) for a home-screen dispatch board.
 
-As you scroll, **Terra** is its own full-viewport page: the original `terra-map.html` Live Earth Map (search, satellite/street/climate layers, amenities, locate).
+As you scroll, **Terra** is its own full-viewport page, then **Global** (`#global`) plays a full-screen countrywide-to-globe video behind “We are available countrywide and also Going Global”. Replace `public/videos/countrywide.mp4` with your PixVerse export to use that exact clip.
 
 ## Run locally
 

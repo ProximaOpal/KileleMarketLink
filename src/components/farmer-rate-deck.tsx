@@ -5,6 +5,7 @@ import Link from "next/link";
 import { animate, motion, useMotionValue } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSuccess } from "@/components/success-overlay";
 
 type Farmer = {
   id: string;
@@ -229,6 +230,7 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
   const [index, setIndex] = useState(0);
   const [ratings, setRatings] = useState(() => FARMERS.map((f) => f.rating));
   const indexRef = useRef(0);
+  const success = useSuccess();
   indexRef.current = index;
 
   useEffect(() => {
@@ -445,14 +447,20 @@ export function FarmerRateDeck({ embedded = false }: { embedded?: boolean }) {
                 style={{ bottom: "max(1rem, env(safe-area-inset-bottom))", background: farmer.bar }}
               >
                 <p className="max-w-[58%] text-[12px] leading-snug text-white/85">{farmer.lastHaul}</p>
-                <motion.a
-                  href="/#terra"
+                <motion.button
+                  type="button"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
+                  onClick={() =>
+                    success.show({
+                      title: "Team linked",
+                      body: `${farmer.name} · ${farmer.coop} is on the haul.`,
+                    })
+                  }
                   className="inline-flex h-11 shrink-0 items-center rounded-xl bg-[#f0c01a] px-4 text-[14px] font-semibold text-black"
                 >
                   Team chat
-                </motion.a>
+                </motion.button>
               </div>
             </article>
           );

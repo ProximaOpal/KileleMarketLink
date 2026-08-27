@@ -10,6 +10,7 @@ const LINKS = [
   { href: "#agents", label: "Agents" },
   { href: "#workflow", label: "Workflow" },
   { href: "#terra", label: "Terra" },
+  { href: "#global", label: "Global" },
   { href: "#pricing", label: "Pricing" },
 ];
 

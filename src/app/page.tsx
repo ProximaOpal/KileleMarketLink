@@ -12,6 +12,7 @@ import { SiteNav } from "@/components/site-nav";
 import { TaskMarquee } from "@/components/task-marquee";
 import { FarmerRateDeck } from "@/components/farmer-rate-deck";
 import { TerraMapSection } from "@/components/terra-map-section";
+import { GlobalReach } from "@/components/global-reach";
 import { Workflow } from "@/components/workflow";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
       <TaskMarquee />
       <Live />
       <TerraMapSection />
+      <GlobalReach />
       <Pricing />
       <CtaFooter />
     </div>

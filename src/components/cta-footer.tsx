@@ -4,20 +4,26 @@ import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PaperCutLayer } from "@/components/paper-cut-layer";
+import { useSuccess } from "@/components/success-overlay";
 
 export function CtaFooter() {
   const [joined, setJoined] = useState(false);
+  const success = useSuccess();
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setJoined(true);
+    success.show({
+      title: "You're on the list",
+      body: "We'll be in touch when the next corridor window opens.",
+    });
   }
 
   return (
     <>
       <section className="relative overflow-hidden border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20">
         <img
-          src="/images/leaves-canopy.jpg"
+          src="/images/step-drop.jpg"
           alt=""
           aria-hidden
           className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover opacity-40"
@@ -54,6 +60,7 @@ export function CtaFooter() {
               ["#agents", "Agents"],
               ["#workflow", "Workflow"],
               ["#terra", "Terra"],
+              ["#global", "Global"],
               ["#live", "Live"],
               ["#pricing", "Pricing"],
             ].map(([href, label]) => (

@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
+import { useSuccess } from "@/components/success-overlay";
 
 const AGENTS = [
   {
     name: "HARVEST",
-    image: "/images/leaves-kale.jpg",
+    image: "/images/step-harvest.jpg",
     title: "Farm-gate inventory",
     body: "Logs harvest volume, crop category, and timestamp at the farm gate. Shelf-life decay curves prioritize perishable batches by urgency — not FIFO.",
     stats: [
@@ -17,7 +18,7 @@ const AGENTS = [
   },
   {
     name: "COLD CHAIN",
-    image: "/images/leaves-canopy.jpg",
+    image: "/images/step-monitor.jpg",
     title: "GPS & telematics",
     body: "Live location of transit fleets from rural farms to urban hubs. IoT probes alert drivers before cargo temperature drops into spoilage.",
     stats: [
@@ -27,7 +28,7 @@ const AGENTS = [
   },
   {
     name: "ROUTING",
-    image: "/images/leaves-field.jpg",
+    image: "/images/step-route.jpg",
     title: "Dynamic timing",
     body: "Optimal transit windows around Nairobi arterials and the northern corridor. Factors road condition, fuel, and strict urban delivery slots.",
     stats: [
@@ -37,7 +38,7 @@ const AGENTS = [
   },
   {
     name: "NODES",
-    image: "/images/leaves-tall.jpg",
+    image: "/images/step-drop.jpg",
     title: "City & factory drop-off",
     body: "Custom nodes for Tatu City and Konza City, plus factory floors and dark stores — consolidated drops for high-density residential nets.",
     stats: [
@@ -50,6 +51,7 @@ const AGENTS = [
 export function Agents() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [scales, setScales] = useState(() => AGENTS.map(() => 1));
+  const success = useSuccess();
 
   useEffect(() => {
     const onScroll = () => {
@@ -108,6 +110,13 @@ export function Agents() {
               >
                 <motion.div
                   whileHover={{ y: -4 }}
+                  whileTap={{ scale: 0.985 }}
+                  onClick={() =>
+                    success.show({
+                      title: `${agent.name} armed`,
+                      body: agent.body,
+                    })
+                  }
                   transition={{ type: "spring", stiffness: 320, damping: 24 }}
                   className="group relative min-h-[280px] cursor-pointer overflow-hidden rounded-2xl border border-[#0a0a0a]/12 bg-white md:min-h-[320px]"
                 >

@@ -51,6 +51,8 @@ export function Pricing() {
           {PLANS.map((plan) => (
             <GlassCard
               key={plan.name}
+              successTitle={plan.featured ? "Builder armed" : `${plan.name} selected`}
+              successBody={plan.note}
               className={`flex flex-col p-8 ${plan.featured ? "border-black/20 bg-[#c8f542] text-black" : ""}`}
             >
               <div className="mb-8">

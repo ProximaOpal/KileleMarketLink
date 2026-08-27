@@ -1,3 +1,5 @@
+"use client";
+
 import { SectionHeading } from "@/components/section-heading";
 import { GlassCard } from "@/components/glass-card";
 
@@ -6,25 +8,29 @@ const STEPS = [
     n: "01",
     title: "Harvest",
     body: "Capture volume, crop, and timestamp at the farm gate before the crate leaves the soil.",
-    image: "/images/leaves-kale.jpg",
+    image: "/images/step-harvest.jpg",
+    success: "Harvest logged",
   },
   {
     n: "02",
     title: "Route",
     body: "Time the northern corridor and Nairobi arterials so the batch hits its urban window.",
-    image: "/images/leaves-field.jpg",
+    image: "/images/step-route.jpg",
+    success: "Route locked",
   },
   {
     n: "03",
     title: "Monitor",
     body: "Watch GPS and cargo temperature. Alert the driver before the cold chain breaks.",
-    image: "/images/leaves-canopy.jpg",
+    image: "/images/step-monitor.jpg",
+    success: "Cold chain live",
   },
   {
     n: "04",
     title: "Drop",
     body: "Consolidate into Tatu, Konza, factory docks, dark stores, or high-density housing.",
-    image: "/images/leaves-tall.jpg",
+    image: "/images/step-drop.jpg",
+    success: "Drop confirmed",
   },
 ];
 
@@ -46,7 +52,12 @@ export function Workflow() {
         </div>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step) => (
-            <GlassCard key={step.n} className="relative flex min-h-[320px] flex-col overflow-hidden">
+            <GlassCard
+              key={step.n}
+              successTitle={step.success}
+              successBody={step.body}
+              className="relative flex min-h-[320px] cursor-pointer flex-col overflow-hidden"
+            >
               <div className="pointer-events-none absolute inset-x-0 top-0 h-56">
                 <img
                   src={step.image}

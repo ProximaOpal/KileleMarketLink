@@ -3,19 +3,37 @@
 import { motion } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { useSuccess } from "@/components/success-overlay";
 
 export function GlassCard({
   className,
   children,
+  successTitle,
+  successBody,
 }: {
   className?: string;
   children: ReactNode;
+  successTitle?: string;
+  successBody?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const success = useSuccess();
 
   return (
     <motion.div
       ref={ref}
+      role={successTitle ? "button" : undefined}
+      tabIndex={successTitle ? 0 : undefined}
+      onClick={() => {
+        if (successTitle) success.show({ title: successTitle, body: successBody });
+      }}
+      onKeyDown={(event) => {
+        if (!successTitle) return;
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          success.show({ title: successTitle, body: successBody });
+        }
+      }}
       onMouseMove={(event) => {
         const el = ref.current;
         if (!el) return;
@@ -24,10 +42,12 @@ export function GlassCard({
         el.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
       }}
       whileHover={{ y: -6, scale: 1.012 }}
+      whileTap={successTitle ? { scale: 0.985 } : undefined}
       transition={{ type: "spring", stiffness: 340, damping: 26 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border border-black/10 bg-white/78",
         "shadow-[0_18px_40px_rgba(10,10,10,0.06)]",
+        successTitle && "cursor-pointer",
         className,
       )}
       style={{ backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)" }}

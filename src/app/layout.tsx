@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans, Press_Start_2P } from "next/font/google";
 import { InstallPrompt } from "@/components/install-prompt";
 import { PwaRegister } from "@/components/pwa-register";
+import { SuccessProvider } from "@/components/success-overlay";
 import "./globals.css";
 
 const plex = IBM_Plex_Sans({
@@ -49,9 +50,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plex.variable} ${pixel.variable} antialiased`}>
-        {children}
-        <PwaRegister />
-        <InstallPrompt />
+        <SuccessProvider>
+          {children}
+          <PwaRegister />
+          <InstallPrompt />
+        </SuccessProvider>
       </body>
     </html>
   );

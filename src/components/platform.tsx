@@ -21,9 +21,13 @@ export function Platform() {
           />
         </div>
         <div className="grid grid-cols-12 gap-3">
-          <GlassCard className="relative col-span-12 flex min-h-[200px] flex-col justify-between overflow-hidden p-8">
+          <GlassCard
+            successTitle="Batch tracker live"
+            successBody="Harvest volume, crop, and timestamp are logged at the gate."
+            className="relative col-span-12 flex min-h-[200px] flex-col justify-between overflow-hidden p-8"
+          >
             <img
-              src="/images/leaves-kale.jpg"
+              src="/images/step-harvest.jpg"
               alt=""
               aria-hidden
               className="absolute inset-0 h-full w-full object-cover"
@@ -57,7 +61,11 @@ export function Platform() {
               </p>
             </div>
           </GlassCard>
-          <GlassCard className="col-span-12 min-h-[200px] p-8 md:col-span-4">
+          <GlassCard
+            successTitle="Telematics live"
+            successBody="GPS and temperature will alert before spoilage."
+            className="col-span-12 min-h-[200px] p-8 md:col-span-4"
+          >
             <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl border border-[#0a0a0a]/15">
               <Activity className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </div>
@@ -66,7 +74,11 @@ export function Platform() {
               Live fleet maps from rural farms to urban hubs. Temperature alerts before spoilage, not after.
             </p>
           </GlassCard>
-          <GlassCard className="col-span-12 min-h-[200px] p-8 md:col-span-4">
+          <GlassCard
+            successTitle="Decay ranked"
+            successBody="Perishable batches now move by urgency, not FIFO."
+            className="col-span-12 min-h-[200px] p-8 md:col-span-4"
+          >
             <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl border border-[#0a0a0a]/15">
               <Layers className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </div>
@@ -75,7 +87,11 @@ export function Platform() {
               Perishable batches ranked by actual urgency — not first-in, first-out.
             </p>
           </GlassCard>
-          <GlassCard className="col-span-12 min-h-[200px] p-8 md:col-span-4">
+          <GlassCard
+            successTitle="Node booked"
+            successBody="Tatu, Konza, factory floors, and dark stores are on the window."
+            className="col-span-12 min-h-[200px] p-8 md:col-span-4"
+          >
             <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl border border-[#0a0a0a]/15">
               <Shield className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </div>
