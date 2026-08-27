@@ -3,7 +3,6 @@
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { PaperCutLayer } from "@/components/paper-cut-layer";
 import { useSuccess } from "@/components/success-overlay";
 
 export function CtaFooter() {
@@ -21,14 +20,21 @@ export function CtaFooter() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20">
-        <img
-          src="/images/step-drop.jpg"
-          alt=""
-          aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover opacity-40"
+      <section className="relative isolate overflow-hidden border-t border-[#0a0a0a]/10 px-6 py-32 md:px-12 lg:px-20">
+        <div
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            background:
+              "radial-gradient(90% 70% at 92% 8%, #e8ff78 0%, transparent 52%), radial-gradient(80% 65% at 100% 100%, #2ee6c8 0%, transparent 55%), linear-gradient(152deg, #f3f3f1 0%, #f4f6e8 26%, #d4f85a 58%, #8aecc8 78%, #2ee6c8 100%)",
+          }}
         />
-        <PaperCutLayer className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] w-full" />
+        <div
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(243,243,241,0.55) 0%, rgba(243,243,241,0.12) 42%, rgba(243,243,241,0.4) 100%)",
+          }}
+        />
         <div className="relative z-10 mx-auto max-w-2xl text-center">
           <h2 className="mb-6 font-display text-4xl font-light leading-[1.05] tracking-tight text-[#0a0a0a] md:text-5xl lg:text-6xl">
             Start moving harvests

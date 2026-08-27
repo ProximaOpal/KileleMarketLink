@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 const PLANS = [
   {
     name: "Sandbox",
-    price: "Free",
+    price: "$50",
+    suffix: "/mo",
     note: "Pilot a single farm gate",
     featured: false,
     cta: "GET STARTED",
@@ -13,7 +14,7 @@ const PLANS = [
   },
   {
     name: "Builder",
-    price: "$49",
+    price: "$150",
     suffix: "/mo",
     note: "For corridors shipping daily",
     featured: true,
@@ -22,10 +23,11 @@ const PLANS = [
   },
   {
     name: "Enterprise",
-    price: "Custom",
+    price: "$750",
+    suffix: "/mo",
     note: "Factories and city grids",
     featured: false,
-    cta: "CONTACT SALES",
+    cta: "GET STARTED",
     items: ["Unlimited lots", "Unlimited km", "Dedicated infra", "SOC 2 / food safety", "SLA windows", "Tatu + Konza nodes"],
   },
 ];
