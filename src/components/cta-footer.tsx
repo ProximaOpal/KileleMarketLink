@@ -64,6 +64,7 @@ export function CtaFooter() {
               ["#platform", "Platform"],
               ["#farmers", "Farmers"],
               ["#agents", "Agents"],
+              ["#infra", "Infra"],
               ["#workflow", "Workflow"],
               ["#terra", "Terra"],
               ["#global", "Global"],

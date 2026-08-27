@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Agents } from "@/components/agents";
+import { CriticalInfrastructure } from "@/components/critical-infrastructure";
 import { CtaFooter } from "@/components/cta-footer";
 import { FarmerRateDeck } from "@/components/farmer-rate-deck";
 import { GlobalReach } from "@/components/global-reach";
@@ -44,6 +45,7 @@ export function HomeShell() {
       <FarmerRateDeck embedded />
       <Platform />
       <Agents />
+      <CriticalInfrastructure />
       <Workflow />
       <Integrations />
       <TaskMarquee />

@@ -10,6 +10,7 @@ const LINKS = [
   { href: "#farmers", label: "Farmers" },
   { href: "#platform", label: "Platform" },
   { href: "#agents", label: "Agents" },
+  { href: "#infra", label: "Infra" },
   { href: "#workflow", label: "Workflow" },
   { href: "#terra", label: "Terra" },
   { href: "#global", label: "Global" },
@@ -89,7 +90,7 @@ export function SiteNav() {
         </nav>
         <div
           className="mt-2 overflow-hidden transition-all duration-300 ease-in-out lg:hidden"
-          style={{ maxHeight: open ? 440 : 0, opacity: open ? 1 : 0 }}
+            style={{ maxHeight: open ? 520 : 0, opacity: open ? 1 : 0 }}
         >
           <div
             className="flex flex-col rounded-2xl border border-[#0a0a0a]/12 bg-white/90 px-2 py-2"
