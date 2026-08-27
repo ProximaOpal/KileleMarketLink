@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Agents } from "@/components/agents";
 import { CtaFooter } from "@/components/cta-footer";
 import { FarmerRateDeck } from "@/components/farmer-rate-deck";
@@ -16,31 +16,42 @@ import { TaskMarquee } from "@/components/task-marquee";
 import { TerraMapSection } from "@/components/terra-map-section";
 import { Workflow } from "@/components/workflow";
 
+function deepLinked() {
+  const hash = window.location.hash;
+  return Boolean(hash && hash !== "#" && hash !== "#top");
+}
+
 export function HomeShell() {
-  const [entered, setEntered] = useState(false);
+  const [mode, setMode] = useState<"boot" | "intro" | "app">("boot");
+
+  useEffect(() => {
+    setMode(deepLinked() ? "app" : "intro");
+  }, []);
+
+  if (mode === "boot") {
+    return <div className="min-h-screen bg-[#F4F6F2]" />;
+  }
+
+  if (mode === "intro") {
+    return <KileleLanding onComplete={() => setMode("app")} />;
+  }
 
   return (
     <div className="relative isolate min-h-screen overflow-x-hidden text-[#0a0a0a]">
-      {!entered && <KileleLanding onComplete={() => setEntered(true)} />}
-      <div
-        aria-hidden={!entered}
-        className={entered ? undefined : "pointer-events-none h-screen overflow-hidden"}
-      >
-        <div className="luminous-backdrop" aria-hidden />
-        <SiteNav />
-        <Hero />
-        <FarmerRateDeck embedded />
-        <Platform />
-        <Agents />
-        <Workflow />
-        <Integrations />
-        <TaskMarquee />
-        <Live />
-        <TerraMapSection />
-        <GlobalReach />
-        <Pricing />
-        <CtaFooter />
-      </div>
+      <div className="luminous-backdrop" aria-hidden />
+      <SiteNav />
+      <Hero />
+      <FarmerRateDeck embedded />
+      <Platform />
+      <Agents />
+      <Workflow />
+      <Integrations />
+      <TaskMarquee />
+      <Live />
+      <TerraMapSection />
+      <GlobalReach />
+      <Pricing />
+      <CtaFooter />
     </div>
   );
 }

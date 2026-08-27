@@ -2,9 +2,7 @@
 
 GitHub: [ProximaOpal/KileleMarketLink](https://github.com/ProximaOpal/KileleMarketLink)
 
-The site opens on a **KILELE Market Link** gate. Press **Enter** for torn-paper green splashes, the wordmark, and a full-screen camera-move video, then it fades into the main app.
-
-Replace `public/videos/landing.mp4` with your PixVerse export (`PixVerse_V6_Image_Text_540P_CAMERA_MOVEMENTS__.mp4`) to use that exact clip on the landing.
+The site opens on a **KILELE Market Link** gate. Press **Enter** for torn-paper green splashes and the wordmark, then the main app.
 
 Install as a **PWA** from Chrome (Install prompt) for a home-screen dispatch board.
 

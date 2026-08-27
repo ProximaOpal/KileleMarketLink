@@ -40,7 +40,6 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
   const [soundOn, setSoundOn] = useState(true);
   const [entered, setEntered] = useState(false);
   const audioRef = useRef<AudioKit | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const doneRef = useRef(false);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
@@ -195,7 +194,6 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    void videoRef.current?.play().catch(() => undefined);
 
     return () => {
       document.body.style.overflow = prevOverflow;
@@ -230,7 +228,6 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
     ensureCtx();
     playClick(700, 0.09);
     setGateHidden(true);
-    void videoRef.current?.play().catch(() => undefined);
 
     const reduced = reducedMotion();
     setPhase("kml-shapes-in");
@@ -271,18 +268,6 @@ export function KileleLanding({ onComplete }: { onComplete: () => void }) {
       role="dialog"
       aria-label="Kilele Market Link intro"
     >
-      <video
-        ref={videoRef}
-        className="kml-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="/images/global-kenya-aerial.jpg"
-      >
-        <source src="/videos/landing.mp4" type="video/mp4" />
-      </video>
-
       <svg className="kml-splashes" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" aria-hidden>
         <defs>
           <linearGradient id={gGreen} x1="0%" y1="0%" x2="100%" y2="100%">
